@@ -23,9 +23,9 @@ const useCustomersSearch = () => {
   const [state, setState] = useState({
     filters: {
       query: undefined,
-      hasAcceptedMarketing: undefined,
-      isProspect: undefined,
-      isReturning: undefined,
+      // hasAcceptedMarketing: undefined,
+      // isProspect: undefined,
+      // isReturning: undefined,
       isManager: undefined,
       isReceptionist: undefined
     },
@@ -73,9 +73,55 @@ const useCustomersSearch = () => {
   };
 };
 
-// const useCustomersStore = (searchState) => {
-const useCustomersStore = () => {
+//FUNZIONANTE
+// const useCustomersStore = () => {
+//   // const useCustomersStore = () => {
+//   const isMounted = useMounted();
+//   const [state, setState] = useState({
+//     customers: [],
+//     customersCount: 0
+//   });
 
+//   const handleCustomersGet = useCallback(async () => {
+//     try {
+//       // const token = sessionStorage.getItem('token');
+//       const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRyM2EuZGlwYW9sYUBnbWFpbC5jb20iLCJpYXQiOjE2ODk0NDY4NzIsImV4cCI6MTY5MDA1MTY3Mn0.lDvX_jt6_v3SDdY3qtcn1oal9NLJ3W7vm7XLAShcfM0";
+//       const headers = {
+//         Authorization: `Bearer ${token}`
+//       };
+//       const response = await axios.get('http://localhost:3001/users', { headers });
+//       let data = response.data.content;
+//       let count = data.count;
+//       console.log("Token:", token);
+//       console.log("Customers:", data);
+//       console.log("Count:", count);
+
+
+//       if (isMounted()) {
+//         setState({
+//           customers: data,
+//           //DA VEDERE
+//           customersCount: count
+//         });
+//       }
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   }, [isMounted]);
+//   useEffect(
+//     () => {
+//       handleCustomersGet();
+//     },
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//     []
+//   );
+
+//   return {
+//     ...state
+//   };
+// };
+
+const useCustomersStore = (searchState) => {
   const isMounted = useMounted();
   const [state, setState] = useState({
     customers: [],
@@ -84,41 +130,26 @@ const useCustomersStore = () => {
 
   const handleCustomersGet = useCallback(async () => {
     try {
-      //added
-      // const token = sessionStorage.getItem('token');
-      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRyM2EuZGlwYW9sYUBnbWFpbC5jb20iLCJpYXQiOjE2ODk0NDY4NzIsImV4cCI6MTY5MDA1MTY3Mn0.lDvX_jt6_v3SDdY3qtcn1oal9NLJ3W7vm7XLAShcfM0";
-      const headers = {
-        Authorization: `Bearer ${token}`
-      };
-      // const response = await customersApi.getCustomers(searchState);
-      //added
-      // const response = await axios.get('http://localhost:3001/users', { headers }, searchState);
-      const response = await axios.get('http://localhost:3001/users', { headers });
-      //end added
-      console.log("Customers:", response.data.content);
-      console.log("Token:", token);
+      const response = await customersApi.getCustomers(searchState);
+      // console.log("Customers:", response.data);
+      // console.log("Count:", response.count);
       if (isMounted()) {
         setState({
-          customers: response.data.content,
+          customers: response.data,
           customersCount: response.count
         });
       }
     } catch (err) {
       console.error(err);
     }
-    // }, [searchState, isMounted]);
-  }, [isMounted]);
+  }, [searchState, isMounted]);
 
   useEffect(
     () => {
-      const token = sessionStorage.getItem('token');
-      console.log("Token:", token);
       handleCustomersGet();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // [searchState]
-    []
-
+    [searchState]
   );
 
   return {
@@ -130,7 +161,8 @@ const useCustomersStore = () => {
 
 const useCustomersIds = (customers = []) => {
   return useMemo(() => {
-    return customers.map((customer) => customer.id);
+    return customers.map((customer) => customer.userId);
+    // return customers.map((customer) => customer.id);
     // return customers.map((customer, index) => { return { ...customer, key: `${customer.id}-${index}` }; });
 
   }, [customers]);
@@ -138,8 +170,8 @@ const useCustomersIds = (customers = []) => {
 
 const Page = () => {
   const customersSearch = useCustomersSearch();
-  // const customersStore = useCustomersStore(customersSearch.state);
-  const customersStore = useCustomersStore();
+  const customersStore = useCustomersStore(customersSearch.state);
+  // const customersStore = useCustomersStore();
   const customersIds = useCustomersIds(customersStore.customers);
   const customersSelection = useSelection(customersIds);
 

@@ -42,6 +42,30 @@ const tabs = [
 
 const sortOptions = [
   {
+    label: 'Last Name (desc)',
+    value: 'lastName|desc'
+  },
+  {
+    label: 'Last Name (asc)',
+    value: 'lastName|asc'
+  },
+  {
+    label: 'First Name (desc)',
+    value: 'firstName|desc'
+  },
+  {
+    label: 'First Name (asc)',
+    value: 'firstName|asc'
+  },
+  {
+    label: 'email (desc)',
+    value: 'email|desc'
+  },
+  {
+    label: 'email (asc)',
+    value: 'email|asc'
+  },
+  {
     label: 'Last update (newest)',
     value: 'updatedAt|desc'
   },
@@ -140,7 +164,7 @@ export const CustomerListSearch = (props) => {
         <Box
           component="form"
           onSubmit={handleQueryChange}
-          sx={{ flexGrow: 0 }}
+          sx={{ flexGrow: 1 }}
         >
           <OutlinedInput
             defaultValue=""
@@ -156,7 +180,7 @@ export const CustomerListSearch = (props) => {
             )}
           />
         </Box>
-        {/* <TextField
+        <TextField
           label="Sort By"
           name="sort"
           onChange={handleSortChange}
@@ -172,7 +196,7 @@ export const CustomerListSearch = (props) => {
               {option.label}
             </option>
           ))}
-        </TextField> */}
+        </TextField>
       </Stack>
     </>
   );
