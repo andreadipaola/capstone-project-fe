@@ -68,6 +68,26 @@ export const paths = {
       details: '/dashboard/customers/:customerId',
       edit: '/dashboard/customers/:customerId/edit'
     },
+    guests: {
+      index: '/dashboard/guests',
+      details: '/dashboard/guests/:guestId',
+      edit: '/dashboard/guests/:guestId/edit'
+    },
+    reservations: {
+      index: '/dashboard/reservations',
+      details: '/dashboard/reservations/:reservationId',
+      edit: '/dashboard/reservations/:reservationsId/edit'
+    },
+    rooms: {
+      index: '/dashboard/rooms',
+      details: '/dashboard/rooms/:roomId',
+      edit: '/dashboard/rooms/:roomId/edit'
+    },
+    roomTypes: {
+      index: '/dashboard/roomTypes',
+      details: '/dashboard/roomTypes/:roomTypeId',
+      edit: '/dashboard/roomTypes/:roomTypeId/edit'
+    },
     ecommerce: '/dashboard/ecommerce',
     fileManager: '/dashboard/file-manager',
     invoices: {

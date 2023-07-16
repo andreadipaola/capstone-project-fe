@@ -100,7 +100,7 @@ export const useSections = () => {
             path: paths.dashboard.customers.index,
             icon: (
               <SvgIcon fontSize="small">
-                <Users03Icon />
+                <Lock01Icon />
               </SvgIcon>
             ),
             items: [
@@ -120,7 +120,7 @@ export const useSections = () => {
           },
           {
             title: t(tokens.nav.guests),
-            path: paths.dashboard.customers.index,
+            path: paths.dashboard.guests.index,
             icon: (
               <SvgIcon fontSize="small">
                 <Users03Icon />
@@ -129,15 +129,84 @@ export const useSections = () => {
             items: [
               {
                 title: t(tokens.nav.list),
-                path: paths.dashboard.customers.index
+                path: paths.dashboard.guests.index
               },
               {
                 title: t(tokens.nav.details),
-                path: paths.dashboard.customers.details
+                path: paths.dashboard.guests.details
               },
               {
                 title: t(tokens.nav.edit),
-                path: paths.dashboard.customers.edit
+                path: paths.dashboard.guests.edit
+              }
+            ]
+          },
+          {
+            title: t(tokens.nav.reservations),
+            path: paths.dashboard.reservations.index,
+            icon: (
+              <SvgIcon fontSize="small">
+                <ReceiptCheckIcon />
+              </SvgIcon>
+            ),
+            items: [
+              {
+                title: t(tokens.nav.list),
+                path: paths.dashboard.reservations.index
+              },
+              {
+                title: t(tokens.nav.details),
+                path: paths.dashboard.reservations.details
+              },
+              {
+                title: t(tokens.nav.edit),
+                path: paths.dashboard.reservations.edit
+              }
+            ]
+          },
+          {
+            title: t(tokens.nav.rooms),
+            path: paths.dashboard.rooms.index,
+            icon: (
+              <SvgIcon fontSize="small">
+                <Users03Icon />
+              </SvgIcon>
+            ),
+            items: [
+              {
+                title: t(tokens.nav.list),
+                path: paths.dashboard.rooms.index
+              },
+              {
+                title: t(tokens.nav.details),
+                path: paths.dashboard.rooms.details
+              },
+              {
+                title: t(tokens.nav.edit),
+                path: paths.dashboard.rooms.edit
+              }
+            ]
+          },
+          {
+            title: t(tokens.nav.roomTypes),
+            path: paths.dashboard.roomTypes.index,
+            icon: (
+              <SvgIcon fontSize="small">
+                <Building04Icon />
+              </SvgIcon>
+            ),
+            items: [
+              {
+                title: t(tokens.nav.list),
+                path: paths.dashboard.roomTypes.index
+              },
+              {
+                title: t(tokens.nav.details),
+                path: paths.dashboard.roomTypes.details
+              },
+              {
+                title: t(tokens.nav.edit),
+                path: paths.dashboard.roomTypes.edit
               }
             ]
           },
@@ -160,25 +229,26 @@ export const useSections = () => {
           //     }
           //   ]
           // },
-          {
-            title: t(tokens.nav.reservations),
-            icon: (
-              <SvgIcon fontSize="small">
-                <ShoppingCart01Icon />
-              </SvgIcon>
-            ),
-            path: paths.dashboard.orders.index,
-            items: [
-              {
-                title: t(tokens.nav.list),
-                path: paths.dashboard.orders.index
-              },
-              {
-                title: t(tokens.nav.details),
-                path: paths.dashboard.orders.details
-              }
-            ]
-          },
+          //CUSTOM
+          // {
+          //   title: t(tokens.nav.reservations),
+          //   icon: (
+          //     <SvgIcon fontSize="small">
+          //       <ShoppingCart01Icon />
+          //     </SvgIcon>
+          //   ),
+          //   path: paths.dashboard.orders.index,
+          //   items: [
+          //     {
+          //       title: t(tokens.nav.list),
+          //       path: paths.dashboard.orders.index
+          //     },
+          //     {
+          //       title: t(tokens.nav.details),
+          //       path: paths.dashboard.orders.details
+          //     }
+          //   ]
+          // },
           {
             title: t(tokens.nav.payments),
             icon: (
@@ -214,52 +284,6 @@ export const useSections = () => {
               {
                 title: t(tokens.nav.details),
                 path: paths.dashboard.invoices.details
-              }
-            ]
-          },
-          {
-            title: t(tokens.nav.rooms),
-            path: paths.dashboard.customers.index,
-            icon: (
-              <SvgIcon fontSize="small">
-                <Users03Icon />
-              </SvgIcon>
-            ),
-            items: [
-              {
-                title: t(tokens.nav.list),
-                path: paths.dashboard.customers.index
-              },
-              {
-                title: t(tokens.nav.details),
-                path: paths.dashboard.customers.details
-              },
-              {
-                title: t(tokens.nav.edit),
-                path: paths.dashboard.customers.edit
-              }
-            ]
-          },
-          {
-            title: t(tokens.nav.roomTypes),
-            path: paths.dashboard.customers.index,
-            icon: (
-              <SvgIcon fontSize="small">
-                <Users03Icon />
-              </SvgIcon>
-            ),
-            items: [
-              {
-                title: t(tokens.nav.list),
-                path: paths.dashboard.customers.index
-              },
-              {
-                title: t(tokens.nav.details),
-                path: paths.dashboard.customers.details
-              },
-              {
-                title: t(tokens.nav.edit),
-                path: paths.dashboard.customers.edit
               }
             ]
           },

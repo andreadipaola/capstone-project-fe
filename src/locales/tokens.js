@@ -59,7 +59,7 @@ export const tokens = {
     payments: 'nav.payments',
     reservations: 'nav.eservations',
     rooms: 'nav.rooms',
-    roomTypes: 'nav.roomsTypes',
+    roomTypes: 'nav.roomTypes',
     users: 'nav.users'
   }
 };

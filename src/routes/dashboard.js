@@ -19,6 +19,26 @@ const CustomerListPage = lazy(() => import('src/pages/dashboard/customers/list')
 const CustomerDetailPage = lazy(() => import('src/pages/dashboard/customers/detail'));
 const CustomerEditPage = lazy(() => import('src/pages/dashboard/customers/edit'));
 
+// Guest
+const GuestListPage = lazy(() => import('src/pages/dashboard/guests/list'));
+const GuestDetailPage = lazy(() => import('src/pages/dashboard/guests/detail'));
+const GuestEditPage = lazy(() => import('src/pages/dashboard/guests/edit'));
+
+// Reservation
+const ReservationListPage = lazy(() => import('src/pages/dashboard/reservations/list'));
+const ReservationDetailPage = lazy(() => import('src/pages/dashboard/reservations/detail'));
+const ReservationEditPage = lazy(() => import('src/pages/dashboard/reservations/edit'));
+
+// Room
+const RoomListPage = lazy(() => import('src/pages/dashboard/rooms/list'));
+const RoomDetailPage = lazy(() => import('src/pages/dashboard/rooms/detail'));
+const RoomEditPage = lazy(() => import('src/pages/dashboard/rooms/edit'));
+
+// Room Type
+const RoomTypesListPage = lazy(() => import('src/pages/dashboard/roomTypes/list'));
+const RoomTypesDetailPage = lazy(() => import('src/pages/dashboard/roomTypes/detail'));
+const RoomTypesEditPage = lazy(() => import('src/pages/dashboard/roomTypes/edit'));
+
 // Invoice
 const InvoiceListPage = lazy(() => import('src/pages/dashboard/invoices/list'));
 const InvoiceDetailPage = lazy(() => import('src/pages/dashboard/invoices/detail'));
@@ -120,6 +140,74 @@ export const dashboardRoutes = [
           {
             path: ':customerId/edit',
             element: <CustomerEditPage />
+          }
+        ]
+      },
+      {
+        path: 'guests',
+        children: [
+          {
+            index: true,
+            element: <GuestListPage />
+          },
+          {
+            path: ':guestId',
+            element: <GuestDetailPage />
+          },
+          {
+            path: ':guestId/edit',
+            element: <GuestEditPage />
+          }
+        ]
+      },
+      {
+        path: 'reservations',
+        children: [
+          {
+            index: true,
+            element: <ReservationListPage />
+          },
+          {
+            path: ':reservationId',
+            element: <ReservationDetailPage />
+          },
+          {
+            path: ':reservationId/edit',
+            element: <ReservationEditPage />
+          }
+        ]
+      },
+      {
+        path: 'rooms',
+        children: [
+          {
+            index: true,
+            element: <RoomListPage />
+          },
+          {
+            path: ':roomId',
+            element: <RoomDetailPage />
+          },
+          {
+            path: ':roomId/edit',
+            element: <RoomEditPage />
+          }
+        ]
+      },
+      {
+        path: 'roomTypes',
+        children: [
+          {
+            index: true,
+            element: <RoomTypesListPage />
+          },
+          {
+            path: ':roomTypesId',
+            element: <RoomTypesDetailPage />
+          },
+          {
+            path: ':roomTypesId/edit',
+            element: <RoomTypesEditPage />
           }
         ]
       },

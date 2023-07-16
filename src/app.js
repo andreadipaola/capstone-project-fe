@@ -81,7 +81,7 @@ export const App = () => {
                             : (
                               <>
                                 {element}
-                                {/* <SettingsButton onClick={settings.handleDrawerOpen} /> */}
+                                <SettingsButton onClick={settings.handleDrawerOpen} />
                                 <SettingsDrawer
                                   canReset={settings.isCustom}
                                   onClose={settings.handleDrawerClose}
