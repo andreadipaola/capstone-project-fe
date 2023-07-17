@@ -22,6 +22,16 @@ import { RouterLink } from 'src/components/router-link';
 import { Scrollbar } from 'src/components/scrollbar';
 import { paths } from 'src/paths';
 import { getInitials } from 'src/utils/get-initials';
+import { SeverityPill } from 'src/components/severity-pill';
+
+const statusMap = {
+  REQUESTED: 'info',
+  PENDING: 'info',
+  CONFIRMED: 'success',
+  CHECKED_IN: 'warning',
+  CHECKED_OUT: 'warning',
+  CANCELLED: 'error'
+};
 
 export const ReservationListTable = (props) => {
   const {
@@ -63,7 +73,7 @@ export const ReservationListTable = (props) => {
             zIndex: 10
           }}
         >
-          <Checkbox
+          {/* <Checkbox
             checked={selectedAll}
             indeterminate={selectedSome}
             onChange={(event) => {
@@ -85,14 +95,14 @@ export const ReservationListTable = (props) => {
             size="small"
           >
             Edit
-          </Button>
+          </Button> */}
         </Stack>
       )}
       <Scrollbar>
         <Table sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
-              <TableCell padding="checkbox">
+              {/* <TableCell padding="checkbox">
                 <Checkbox
                   checked={selectedAll}
                   indeterminate={selectedSome}
@@ -104,15 +114,18 @@ export const ReservationListTable = (props) => {
                     }
                   }}
                 />
+              </TableCell> */}
+              <TableCell>
+                Id
               </TableCell>
               <TableCell>
-                Name
+                Arrival Date
               </TableCell>
               <TableCell>
-                Email Address
+                Departure Date
               </TableCell>
               <TableCell>
-                Role
+                Status
               </TableCell>
               {/* <TableCell>
                 Location
@@ -133,6 +146,7 @@ export const ReservationListTable = (props) => {
               const isSelected = selected.includes(reservation.reservationId);
               const location = `${reservation.city}, ${reservation.state}, ${reservation.country}`;
               const totalSpent = numeral(reservation.totalSpent).format(`${reservation.currency}0,0.00`);
+              const statusColor = statusMap[reservation.bookingStatus];
 
               return (
                 <TableRow
@@ -140,7 +154,7 @@ export const ReservationListTable = (props) => {
                   key={reservation.reservationId}
                   selected={isSelected}
                 >
-                  <TableCell padding="checkbox">
+                  {/* <TableCell padding="checkbox">
                     <Checkbox
                       checked={isSelected}
                       onChange={(event) => {
@@ -152,8 +166,8 @@ export const ReservationListTable = (props) => {
                       }}
                       value={isSelected}
                     />
-                  </TableCell>
-                  <TableCell>
+                  </TableCell> */}
+                  {/* <TableCell>
                     <Stack
                       alignItems="center"
                       direction="row"
@@ -177,20 +191,28 @@ export const ReservationListTable = (props) => {
                         >
                           {reservation.firstName + " " + reservation.lastName}
                         </Link>
-                        {/* <Typography
+                        <Typography
                           color="text.secondary"
                           variant="body2"
                         >
                           {reservation.email}
-                        </Typography> */}
+                        </Typography>
                       </div>
                     </Stack>
+                  </TableCell> */}
+                  <TableCell>
+                    {reservation.reservationId}
                   </TableCell>
                   <TableCell>
-                    {reservation.email}
+                    {reservation.arrivalDate}
                   </TableCell>
                   <TableCell>
-                    {reservation.role}
+                    {reservation.departureDate}
+                  </TableCell>
+                  <TableCell>
+                    <SeverityPill color={statusColor}>
+                      {reservation.bookingStatus}
+                    </SeverityPill>
                   </TableCell>
                   {/* <TableCell>
                     {location}

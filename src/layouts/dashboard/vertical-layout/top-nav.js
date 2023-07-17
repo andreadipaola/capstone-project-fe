@@ -59,7 +59,7 @@ export const TopNav = (props) => {
               </SvgIcon>
             </IconButton>
           )}
-          <SearchButton />
+          {/* <SearchButton /> */}
         </Stack>
         <Stack
           alignItems="center"

@@ -31,47 +31,47 @@ const tabs = [
   //   value: 'isReturning'
   // },
   {
-    label: 'Managers',
-    value: 'isManager'
+    label: 'Requested',
+    value: 'REQUESTED'
   },
   {
-    label: 'Receptionists',
-    value: 'isReceptionist'
+    label: 'Pending',
+    value: 'PENDING'
   }
 ];
 
 const sortOptions = [
   {
-    label: 'Last Name (desc)',
-    value: 'lastName|desc'
+    label: 'Arrival Date (desc)',
+    value: 'arrivalDate|desc'
   },
   {
-    label: 'Last Name (asc)',
-    value: 'lastName|asc'
+    label: 'Arrival Date (asc)',
+    value: 'arrivalDate|asc'
   },
   {
-    label: 'First Name (desc)',
-    value: 'firstName|desc'
+    label: 'Departure Date (desc)',
+    value: 'departureDate|desc'
   },
   {
-    label: 'First Name (asc)',
-    value: 'firstName|asc'
+    label: 'Departure Date (asc)',
+    value: 'departureDate|asc'
   },
   {
-    label: 'email (desc)',
-    value: 'email|desc'
+    label: 'Check In (desc)',
+    value: 'checkin|desc'
   },
   {
-    label: 'email (asc)',
-    value: 'email|asc'
+    label: 'Check In (asc)',
+    value: 'checkin|asc'
   },
   {
-    label: 'Last update (newest)',
-    value: 'updatedAt|desc'
+    label: 'Check Out (desc)',
+    value: 'checkout|desc'
   },
   {
-    label: 'Last update (oldest)',
-    value: 'updatedAt|asc'
+    label: 'Check Out (asc)',
+    value: 'checkout|asc'
   },
   // {
   //   label: 'Total orders (highest)',

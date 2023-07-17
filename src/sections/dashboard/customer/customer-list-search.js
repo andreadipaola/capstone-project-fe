@@ -65,14 +65,14 @@ const sortOptions = [
     label: 'email (asc)',
     value: 'email|asc'
   },
-  {
-    label: 'Last update (newest)',
-    value: 'updatedAt|desc'
-  },
-  {
-    label: 'Last update (oldest)',
-    value: 'updatedAt|asc'
-  },
+  // {
+  //   label: 'Last update (newest)',
+  //   value: 'updatedAt|desc'
+  // },
+  // {
+  //   label: 'Last update (oldest)',
+  //   value: 'updatedAt|asc'
+  // },
   // {
   //   label: 'Total orders (highest)',
   //   value: 'totalOrders|desc'

@@ -31,7 +31,7 @@ const useRoomTypesSearch = () => {
     },
     page: 0,
     rowsPerPage: 5,
-    sortBy: "lastName",
+    sortBy: "name",
     sortDir: "asc"
   });
 
@@ -73,53 +73,6 @@ const useRoomTypesSearch = () => {
   };
 };
 
-//FUNZIONANTE
-// const useRoomTypesStore = () => {
-//   // const useRoomTypesStore = () => {
-//   const isMounted = useMounted();
-//   const [state, setState] = useState({
-//     roomTypes: [],
-//     roomTypesCount: 0
-//   });
-
-//   const handleRoomTypesGet = useCallback(async () => {
-//     try {
-//       // const token = sessionStorage.getItem('token');
-//       const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRyM2EuZGlwYW9sYUBnbWFpbC5jb20iLCJpYXQiOjE2ODk0NDY4NzIsImV4cCI6MTY5MDA1MTY3Mn0.lDvX_jt6_v3SDdY3qtcn1oal9NLJ3W7vm7XLAShcfM0";
-//       const headers = {
-//         Authorization: `Bearer ${token}`
-//       };
-//       const response = await axios.get('http://localhost:3001/users', { headers });
-//       let data = response.data.content;
-//       let count = data.count;
-//       console.log("Token:", token);
-//       console.log("RoomTypes:", data);
-//       console.log("Count:", count);
-
-
-//       if (isMounted()) {
-//         setState({
-//           roomTypes: data,
-//           //DA VEDERE
-//           roomTypesCount: count
-//         });
-//       }
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   }, [isMounted]);
-//   useEffect(
-//     () => {
-//       handleRoomTypesGet();
-//     },
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//     []
-//   );
-
-//   return {
-//     ...state
-//   };
-// };
 
 const useRoomTypesStore = (searchState) => {
   const isMounted = useMounted();
@@ -162,8 +115,7 @@ const useRoomTypesStore = (searchState) => {
 const useRoomTypesIds = (roomTypes = []) => {
   return useMemo(() => {
     return roomTypes.map((roomType) => roomType.roomTypeId);
-    // return roomTypes.map((roomType) => roomType.id);
-    // return roomTypes.map((roomType, index) => { return { ...roomType, key: `${roomType.id}-${index}` }; });
+
 
   }, [roomTypes]);
 };
@@ -171,7 +123,6 @@ const useRoomTypesIds = (roomTypes = []) => {
 const Page = () => {
   const roomTypesSearch = useRoomTypesSearch();
   const roomTypesStore = useRoomTypesStore(roomTypesSearch.state);
-  // const roomTypesStore = useRoomTypesStore();
   const roomTypesIds = useRoomTypesIds(roomTypesStore.roomTypes);
   const roomTypesSelection = useSelection(roomTypesIds);
 
@@ -191,7 +142,7 @@ const Page = () => {
           <Stack spacing={4}>
             <Stack direction="row" justifyContent="space-between" spacing={4}>
               <Stack spacing={1}>
-                <Typography variant="h4">RoomTypes</Typography>
+                <Typography variant="h4">Room Types</Typography>
                 <Stack alignItems="center" direction="row" spacing={1}>
                   {/* <Button
                     color="inherit"

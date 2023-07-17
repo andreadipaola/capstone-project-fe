@@ -22,6 +22,13 @@ import { RouterLink } from 'src/components/router-link';
 import { Scrollbar } from 'src/components/scrollbar';
 import { paths } from 'src/paths';
 import { getInitials } from 'src/utils/get-initials';
+import { SeverityPill } from 'src/components/severity-pill';
+
+const statusMap = {
+  MANAGER: 'success',
+  RECEPTIONIST: 'warning',
+  GUEST: 'info'
+};
 
 export const CustomerListTable = (props) => {
   const {
@@ -63,7 +70,7 @@ export const CustomerListTable = (props) => {
             zIndex: 10
           }}
         >
-          <Checkbox
+          {/* <Checkbox
             checked={selectedAll}
             indeterminate={selectedSome}
             onChange={(event) => {
@@ -85,14 +92,14 @@ export const CustomerListTable = (props) => {
             size="small"
           >
             Edit
-          </Button>
+          </Button> */}
         </Stack>
       )}
       <Scrollbar>
         <Table sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
-              <TableCell padding="checkbox">
+              {/* <TableCell padding="checkbox">
                 <Checkbox
                   checked={selectedAll}
                   indeterminate={selectedSome}
@@ -104,7 +111,7 @@ export const CustomerListTable = (props) => {
                     }
                   }}
                 />
-              </TableCell>
+              </TableCell> */}
               <TableCell>
                 Name
               </TableCell>
@@ -133,6 +140,7 @@ export const CustomerListTable = (props) => {
               const isSelected = selected.includes(customer.userId);
               const location = `${customer.city}, ${customer.state}, ${customer.country}`;
               const totalSpent = numeral(customer.totalSpent).format(`${customer.currency}0,0.00`);
+              const statusColor = statusMap[customer.role];
 
               return (
                 <TableRow
@@ -140,7 +148,7 @@ export const CustomerListTable = (props) => {
                   key={customer.userId}
                   selected={isSelected}
                 >
-                  <TableCell padding="checkbox">
+                  {/* <TableCell padding="checkbox">
                     <Checkbox
                       checked={isSelected}
                       onChange={(event) => {
@@ -152,7 +160,7 @@ export const CustomerListTable = (props) => {
                       }}
                       value={isSelected}
                     />
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell>
                     <Stack
                       alignItems="center"
@@ -177,12 +185,12 @@ export const CustomerListTable = (props) => {
                         >
                           {customer.firstName + " " + customer.lastName}
                         </Link>
-                        {/* <Typography
+                        <Typography
                           color="text.secondary"
                           variant="body2"
                         >
                           {customer.email}
-                        </Typography> */}
+                        </Typography>
                       </div>
                     </Stack>
                   </TableCell>
@@ -190,7 +198,9 @@ export const CustomerListTable = (props) => {
                     {customer.email}
                   </TableCell>
                   <TableCell>
-                    {customer.role}
+                    <SeverityPill color={statusColor}>
+                      {customer.role}
+                    </SeverityPill>
                   </TableCell>
                   {/* <TableCell>
                     {location}

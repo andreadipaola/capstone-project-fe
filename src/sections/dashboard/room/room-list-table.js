@@ -22,6 +22,14 @@ import { RouterLink } from 'src/components/router-link';
 import { Scrollbar } from 'src/components/scrollbar';
 import { paths } from 'src/paths';
 import { getInitials } from 'src/utils/get-initials';
+import { SeverityPill } from 'src/components/severity-pill';
+
+const statusMap = {
+  AVAILABLE: 'success',
+  RESERVED: 'info',
+  OCCUPIED: 'warning',
+  NOT_AVAILABLE: 'error'
+};
 
 export const RoomListTable = (props) => {
   const {
@@ -63,7 +71,7 @@ export const RoomListTable = (props) => {
             zIndex: 10
           }}
         >
-          <Checkbox
+          {/* <Checkbox
             checked={selectedAll}
             indeterminate={selectedSome}
             onChange={(event) => {
@@ -85,14 +93,14 @@ export const RoomListTable = (props) => {
             size="small"
           >
             Edit
-          </Button>
+          </Button> */}
         </Stack>
       )}
       <Scrollbar>
         <Table sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
-              <TableCell padding="checkbox">
+              {/* <TableCell padding="checkbox">
                 <Checkbox
                   checked={selectedAll}
                   indeterminate={selectedSome}
@@ -104,15 +112,18 @@ export const RoomListTable = (props) => {
                     }
                   }}
                 />
+              </TableCell> */}
+              <TableCell>
+                Number
               </TableCell>
               <TableCell>
-                Name
+                Floor
               </TableCell>
               <TableCell>
-                Email Address
+                Status
               </TableCell>
               <TableCell>
-                Role
+                Date Added
               </TableCell>
               {/* <TableCell>
                 Location
@@ -133,6 +144,7 @@ export const RoomListTable = (props) => {
               const isSelected = selected.includes(room.roomId);
               const location = `${room.city}, ${room.state}, ${room.country}`;
               const totalSpent = numeral(room.totalSpent).format(`${room.currency}0,0.00`);
+              const statusColor = statusMap[room.roomStatus];
 
               return (
                 <TableRow
@@ -140,7 +152,7 @@ export const RoomListTable = (props) => {
                   key={room.roomId}
                   selected={isSelected}
                 >
-                  <TableCell padding="checkbox">
+                  {/* <TableCell padding="checkbox">
                     <Checkbox
                       checked={isSelected}
                       onChange={(event) => {
@@ -152,8 +164,8 @@ export const RoomListTable = (props) => {
                       }}
                       value={isSelected}
                     />
-                  </TableCell>
-                  <TableCell>
+                  </TableCell> */}
+                  {/* <TableCell>
                     <Stack
                       alignItems="center"
                       direction="row"
@@ -177,20 +189,28 @@ export const RoomListTable = (props) => {
                         >
                           {room.firstName + " " + room.lastName}
                         </Link>
-                        {/* <Typography
+                        <Typography
                           color="text.secondary"
                           variant="body2"
                         >
                           {room.email}
-                        </Typography> */}
+                        </Typography>
                       </div>
                     </Stack>
+                  </TableCell> */}
+                  <TableCell>
+                    {room.roomNumber}
                   </TableCell>
                   <TableCell>
-                    {room.email}
+                    {room.floor}
                   </TableCell>
                   <TableCell>
-                    {room.role}
+                    <SeverityPill color={statusColor}>
+                      {room.roomStatus}
+                    </SeverityPill>
+                  </TableCell>
+                  <TableCell>
+                    {room.dateAdded}
                   </TableCell>
                   {/* <TableCell>
                     {location}

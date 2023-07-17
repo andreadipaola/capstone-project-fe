@@ -31,47 +31,59 @@ const tabs = [
   //   value: 'isReturning'
   // },
   {
-    label: 'Managers',
-    value: 'isManager'
+    label: 'Available',
+    value: 'roomStatus.AVAILABLE'
   },
   {
-    label: 'Receptionists',
-    value: 'isReceptionist'
-  }
+    label: 'Not Available',
+    value: 'roomStatus.NOT_AVAILABLE'
+  },
+  {
+    label: 'Reserved',
+    value: 'roomStatus.RESERVED'
+  },
+  {
+    label: 'Occupied',
+    value: 'roomStatus.OCCUPIED'
+  },
+  // {
+  //   label: 'Receptionists',
+  //   value: 'isReceptionist'
+  // }
 ];
 
 const sortOptions = [
   {
-    label: 'Last Name (desc)',
-    value: 'lastName|desc'
+    label: 'Room Number (desc)',
+    value: 'roomNumber|desc'
   },
   {
-    label: 'Last Name (asc)',
-    value: 'lastName|asc'
+    label: 'Room Number (asc)',
+    value: 'roomNumber|asc'
   },
   {
-    label: 'First Name (desc)',
-    value: 'firstName|desc'
+    label: 'Floor (desc)',
+    value: 'floor|desc'
   },
   {
-    label: 'First Name (asc)',
-    value: 'firstName|asc'
+    label: 'Floor (asc)',
+    value: 'floor|asc'
   },
   {
-    label: 'email (desc)',
-    value: 'email|desc'
+    label: 'Room Status (desc)',
+    value: 'roomStatus|desc'
   },
   {
-    label: 'email (asc)',
-    value: 'email|asc'
+    label: 'Room Status (asc)',
+    value: 'roomStatus|asc'
   },
   {
-    label: 'Last update (newest)',
-    value: 'updatedAt|desc'
+    label: 'Date Added (newest)',
+    value: 'dateAdded|desc'
   },
   {
-    label: 'Last update (oldest)',
-    value: 'updatedAt|asc'
+    label: 'Date Added (oldest)',
+    value: 'dateAdded|asc'
   },
   // {
   //   label: 'Total orders (highest)',
@@ -102,10 +114,7 @@ export const RoomListSearch = (props) => {
     setFilters((prevState) => {
       const updatedFilters = {
         ...prevState,
-        // hasAcceptedMarketing: undefined,
-        // isProspect: undefined,
-        // isReturning: undefined,
-        isManager: undefined,
+        isSmoking: undefined,
         isReceptionist: undefined
       };
 
@@ -170,7 +179,7 @@ export const RoomListSearch = (props) => {
             defaultValue=""
             fullWidth
             inputProps={{ ref: queryRef }}
-            placeholder="Search rooms"
+            placeholder="Search Rooms"
             startAdornment={(
               <InputAdornment position="start">
                 <SvgIcon>

@@ -63,7 +63,7 @@ export const GuestListTable = (props) => {
             zIndex: 10
           }}
         >
-          <Checkbox
+          {/* <Checkbox
             checked={selectedAll}
             indeterminate={selectedSome}
             onChange={(event) => {
@@ -85,14 +85,14 @@ export const GuestListTable = (props) => {
             size="small"
           >
             Edit
-          </Button>
+          </Button> */}
         </Stack>
       )}
       <Scrollbar>
         <Table sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
-              <TableCell padding="checkbox">
+              {/* <TableCell padding="checkbox">
                 <Checkbox
                   checked={selectedAll}
                   indeterminate={selectedSome}
@@ -104,7 +104,7 @@ export const GuestListTable = (props) => {
                     }
                   }}
                 />
-              </TableCell>
+              </TableCell> */}
               <TableCell>
                 Name
               </TableCell>
@@ -112,7 +112,13 @@ export const GuestListTable = (props) => {
                 Email Address
               </TableCell>
               <TableCell>
-                Role
+                Phone
+              </TableCell>
+              <TableCell>
+                Nationality
+              </TableCell>
+              <TableCell>
+                Note
               </TableCell>
               {/* <TableCell>
                 Location
@@ -140,7 +146,7 @@ export const GuestListTable = (props) => {
                   key={guest.guestId}
                   selected={isSelected}
                 >
-                  <TableCell padding="checkbox">
+                  {/* <TableCell padding="checkbox">
                     <Checkbox
                       checked={isSelected}
                       onChange={(event) => {
@@ -152,7 +158,7 @@ export const GuestListTable = (props) => {
                       }}
                       value={isSelected}
                     />
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell>
                     <Stack
                       alignItems="center"
@@ -177,12 +183,12 @@ export const GuestListTable = (props) => {
                         >
                           {guest.firstName + " " + guest.lastName}
                         </Link>
-                        {/* <Typography
+                        <Typography
                           color="text.secondary"
                           variant="body2"
                         >
                           {guest.email}
-                        </Typography> */}
+                        </Typography>
                       </div>
                     </Stack>
                   </TableCell>
@@ -190,7 +196,13 @@ export const GuestListTable = (props) => {
                     {guest.email}
                   </TableCell>
                   <TableCell>
-                    {guest.role}
+                    {guest.phone}
+                  </TableCell>
+                  <TableCell>
+                    {guest.citizenship}
+                  </TableCell>
+                  <TableCell>
+                    {guest.note}
                   </TableCell>
                   {/* <TableCell>
                     {location}

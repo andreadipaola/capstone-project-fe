@@ -18,18 +18,6 @@ const tabs = [
     label: 'All',
     value: 'all'
   },
-  // {
-  //   label: 'Accepts Marketing',
-  //   value: 'hasAcceptedMarketing'
-  // },
-  // {
-  //   label: 'Prospect',
-  //   value: 'isProspect'
-  // },
-  // {
-  //   label: 'Returning',
-  //   value: 'isReturning'
-  // },
   {
     label: 'Managers',
     value: 'isManager'
@@ -42,36 +30,36 @@ const tabs = [
 
 const sortOptions = [
   {
-    label: 'Last Name (desc)',
-    value: 'lastName|desc'
+    label: 'Name (desc)',
+    value: 'name|desc'
   },
   {
-    label: 'Last Name (asc)',
-    value: 'lastName|asc'
+    label: 'Name (asc)',
+    value: 'name|asc'
   },
   {
-    label: 'First Name (desc)',
-    value: 'firstName|desc'
+    label: 'Initials (desc)',
+    value: 'initials|desc'
   },
   {
-    label: 'First Name (asc)',
-    value: 'firstName|asc'
+    label: 'Initials (asc)',
+    value: 'initials|asc'
   },
   {
-    label: 'email (desc)',
-    value: 'email|desc'
+    label: 'Price (desc)',
+    value: 'price|desc'
   },
   {
-    label: 'email (asc)',
-    value: 'email|asc'
+    label: 'Price (asc)',
+    value: 'price|asc'
   },
   {
-    label: 'Last update (newest)',
-    value: 'updatedAt|desc'
+    label: 'Capacity (newest)',
+    value: 'capacity|desc'
   },
   {
-    label: 'Last update (oldest)',
-    value: 'updatedAt|asc'
+    label: 'Capacity(oldest)',
+    value: 'capacity|asc'
   },
   // {
   //   label: 'Total orders (highest)',
@@ -102,9 +90,6 @@ export const RoomTypeListSearch = (props) => {
     setFilters((prevState) => {
       const updatedFilters = {
         ...prevState,
-        // hasAcceptedMarketing: undefined,
-        // isProspect: undefined,
-        // isReturning: undefined,
         isManager: undefined,
         isReceptionist: undefined
       };
@@ -136,7 +121,7 @@ export const RoomTypeListSearch = (props) => {
 
   return (
     <>
-      <Tabs
+      {/* <Tabs
         indicatorColor="primary"
         onChange={handleTabsChange}
         scrollButtons="auto"
@@ -152,8 +137,8 @@ export const RoomTypeListSearch = (props) => {
             value={tab.value}
           />
         ))}
-      </Tabs>
-      <Divider />
+      </Tabs> */}
+      {/* <Divider /> */}
       <Stack
         alignItems="center"
         direction="row"
@@ -170,7 +155,7 @@ export const RoomTypeListSearch = (props) => {
             defaultValue=""
             fullWidth
             inputProps={{ ref: queryRef }}
-            placeholder="Search roomTypes"
+            placeholder="Search Room Types"
             startAdornment={(
               <InputAdornment position="start">
                 <SvgIcon>

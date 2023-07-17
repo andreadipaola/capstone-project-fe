@@ -65,14 +65,14 @@ const sortOptions = [
     label: 'email (asc)',
     value: 'email|asc'
   },
-  {
-    label: 'Last update (newest)',
-    value: 'updatedAt|desc'
-  },
-  {
-    label: 'Last update (oldest)',
-    value: 'updatedAt|asc'
-  },
+  // {
+  //   label: 'Last update (newest)',
+  //   value: 'updatedAt|desc'
+  // },
+  // {
+  //   label: 'Last update (oldest)',
+  //   value: 'updatedAt|asc'
+  // },
   // {
   //   label: 'Total orders (highest)',
   //   value: 'totalOrders|desc'
@@ -136,7 +136,7 @@ export const GuestListSearch = (props) => {
 
   return (
     <>
-      <Tabs
+      {/* <Tabs
         indicatorColor="primary"
         onChange={handleTabsChange}
         scrollButtons="auto"
@@ -153,7 +153,7 @@ export const GuestListSearch = (props) => {
           />
         ))}
       </Tabs>
-      <Divider />
+      <Divider /> */}
       <Stack
         alignItems="center"
         direction="row"

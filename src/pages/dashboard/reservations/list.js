@@ -31,7 +31,7 @@ const useReservationsSearch = () => {
     },
     page: 0,
     rowsPerPage: 5,
-    sortBy: "lastName",
+    sortBy: "arrivalDate",
     sortDir: "asc"
   });
 
@@ -73,53 +73,6 @@ const useReservationsSearch = () => {
   };
 };
 
-//FUNZIONANTE
-// const useReservationsStore = () => {
-//   // const useReservationsStore = () => {
-//   const isMounted = useMounted();
-//   const [state, setState] = useState({
-//     reservations: [],
-//     reservationsCount: 0
-//   });
-
-//   const handleReservationsGet = useCallback(async () => {
-//     try {
-//       // const token = sessionStorage.getItem('token');
-//       const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRyM2EuZGlwYW9sYUBnbWFpbC5jb20iLCJpYXQiOjE2ODk0NDY4NzIsImV4cCI6MTY5MDA1MTY3Mn0.lDvX_jt6_v3SDdY3qtcn1oal9NLJ3W7vm7XLAShcfM0";
-//       const headers = {
-//         Authorization: `Bearer ${token}`
-//       };
-//       const response = await axios.get('http://localhost:3001/users', { headers });
-//       let data = response.data.content;
-//       let count = data.count;
-//       console.log("Token:", token);
-//       console.log("Reservations:", data);
-//       console.log("Count:", count);
-
-
-//       if (isMounted()) {
-//         setState({
-//           reservations: data,
-//           //DA VEDERE
-//           reservationsCount: count
-//         });
-//       }
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   }, [isMounted]);
-//   useEffect(
-//     () => {
-//       handleReservationsGet();
-//     },
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//     []
-//   );
-
-//   return {
-//     ...state
-//   };
-// };
 
 const useReservationsStore = (searchState) => {
   const isMounted = useMounted();

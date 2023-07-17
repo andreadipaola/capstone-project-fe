@@ -63,7 +63,7 @@ export const RoomTypeListTable = (props) => {
             zIndex: 10
           }}
         >
-          <Checkbox
+          {/* <Checkbox
             checked={selectedAll}
             indeterminate={selectedSome}
             onChange={(event) => {
@@ -85,14 +85,14 @@ export const RoomTypeListTable = (props) => {
             size="small"
           >
             Edit
-          </Button>
+          </Button> */}
         </Stack>
       )}
       <Scrollbar>
         <Table sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
-              <TableCell padding="checkbox">
+              {/* <TableCell padding="checkbox">
                 <Checkbox
                   checked={selectedAll}
                   indeterminate={selectedSome}
@@ -104,15 +104,21 @@ export const RoomTypeListTable = (props) => {
                     }
                   }}
                 />
-              </TableCell>
+              </TableCell> */}
               <TableCell>
                 Name
               </TableCell>
               <TableCell>
-                Email Address
+                Initials
               </TableCell>
               <TableCell>
-                Role
+                Description
+              </TableCell>
+              <TableCell>
+                Price
+              </TableCell>
+              <TableCell>
+                Capacity
               </TableCell>
               {/* <TableCell>
                 Location
@@ -140,7 +146,7 @@ export const RoomTypeListTable = (props) => {
                   key={roomType.roomTypeId}
                   selected={isSelected}
                 >
-                  <TableCell padding="checkbox">
+                  {/* <TableCell padding="checkbox">
                     <Checkbox
                       checked={isSelected}
                       onChange={(event) => {
@@ -152,8 +158,8 @@ export const RoomTypeListTable = (props) => {
                       }}
                       value={isSelected}
                     />
-                  </TableCell>
-                  <TableCell>
+                  </TableCell> */}
+                  {/* <TableCell>
                     <Stack
                       alignItems="center"
                       direction="row"
@@ -177,20 +183,29 @@ export const RoomTypeListTable = (props) => {
                         >
                           {roomType.firstName + " " + roomType.lastName}
                         </Link>
-                        {/* <Typography
+                        <Typography
                           color="text.secondary"
                           variant="body2"
                         >
                           {roomType.email}
-                        </Typography> */}
+                        </Typography>
                       </div>
                     </Stack>
+                  </TableCell> */}
+                  <TableCell>
+                    {roomType.name}
                   </TableCell>
                   <TableCell>
-                    {roomType.email}
+                    {roomType.initials}
                   </TableCell>
                   <TableCell>
-                    {roomType.role}
+                    {roomType.description}
+                  </TableCell>
+                  <TableCell>
+                    {roomType.price + ' €'}
+                  </TableCell>
+                  <TableCell>
+                    {roomType.capacity}
                   </TableCell>
                   {/* <TableCell>
                     {location}
@@ -225,8 +240,8 @@ export const RoomTypeListTable = (props) => {
               );
             })}
           </TableBody>
-        </Table>
-      </Scrollbar>
+        </Table >
+      </Scrollbar >
       <TablePagination
         component="div"
         count={count}
@@ -236,7 +251,7 @@ export const RoomTypeListTable = (props) => {
         rowsPerPage={rowsPerPage}
         rowsPerPageOptions={[5, 10, 25]}
       />
-    </Box>
+    </Box >
   );
 };
 

@@ -196,7 +196,7 @@ const Page = () => {
               xs={12}
               md={12}
             >
-              <OverviewTransactions
+              {/* <OverviewTransactions
                 transactions={[
                   {
                     id: 'd46800328cd510a668253b45',
@@ -235,7 +235,7 @@ const Page = () => {
                     type: 'receive'
                   }
                 ]}
-              />
+              /> */}
             </Grid>
             <Grid
               xs={12}
