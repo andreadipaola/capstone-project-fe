@@ -13,9 +13,11 @@ import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
+import { customersApi } from "src/api/customers";
 import { RouterLink } from 'src/components/router-link';
 import { paths } from 'src/paths';
 import { wait } from 'src/utils/wait';
+import axios from 'axios';
 
 export const CustomerEditForm = (props) => {
   const { customer, ...other } = props;
@@ -99,7 +101,13 @@ export const CustomerEditForm = (props) => {
     }),
     onSubmit: async (values, helpers) => {
       try {
-        // NOTE: Make API request
+        const token = sessionStorage.getItem('accessToken');
+        const headers = {
+          Authorization: `Bearer ${token}`
+        };
+        const res = await axios.put('http://localhost:3001/users/' + customer.userId, values, { headers });
+        console.log(res.data);
+        // await customersApi.postCustomer(customer.userId);
         await wait(500);
         helpers.setStatus({ success: true });
         helpers.setSubmitting(false);
@@ -112,6 +120,21 @@ export const CustomerEditForm = (props) => {
         helpers.setSubmitting(false);
       }
     }
+    // onSubmit: async (values, helpers) => {
+    //   try {
+    //     // NOTE: Make API request
+    //     await wait(500);
+    //     helpers.setStatus({ success: true });
+    //     helpers.setSubmitting(false);
+    //     toast.success('User updated');
+    //   } catch (err) {
+    //     console.error(err);
+    //     toast.error('Something went wrong!');
+    //     helpers.setStatus({ success: false });
+    //     helpers.setErrors({ submit: err.message });
+    //     helpers.setSubmitting(false);
+    //   }
+    // }
   });
 
   return (
@@ -368,7 +391,8 @@ export const CustomerEditForm = (props) => {
             color="inherit"
             component={RouterLink}
             disabled={formik.isSubmitting}
-            href={paths.dashboard.customers.details}
+            // href={paths.dashboard.customers.details}
+            to={`/dashboard/customers/${customer.userId}/edit`}
           >
             Cancel
           </Button>

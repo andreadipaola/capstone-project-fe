@@ -99,10 +99,22 @@ class CustomersApi {
     }
   }
 
-
-
   // getCustomer(request) {
   //   return Promise.resolve(deepCopy(customer));
+  // }
+
+  // async putCustomer(customerId, customerBody) {
+  //   const token = sessionStorage.getItem('accessToken');
+  //   const headers = {
+  //     Authorization: `Bearer ${token}`
+  //   };
+  //   try {
+  //     const res = await axios.put(`http://localhost:3001/users/${customerId}`, customerBody, { headers })
+  //     console.log(res.data);
+  //   } catch (err) {
+  //     console.error(err);
+  //     throw err;
+  //   }
   // }
 
   getEmails(request) {
