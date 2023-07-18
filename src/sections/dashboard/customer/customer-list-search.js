@@ -92,6 +92,7 @@ export const CustomerListSearch = (props) => {
   const queryRef = useRef(null);
   const [currentTab, setCurrentTab] = useState('all');
   const [filters, setFilters] = useState({
+    query: undefined,
     role: undefined
   });
 
@@ -135,9 +136,11 @@ export const CustomerListSearch = (props) => {
 
   const handleQueryChange = useCallback((event) => {
     event.preventDefault();
+    const query = queryRef.current?.value || '';
     setFilters((prevState) => ({
       ...prevState,
-      query: queryRef.current?.value
+      query
+      // query: queryRef.current?.value
     }));
   }, []);
 

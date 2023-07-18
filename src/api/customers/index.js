@@ -43,16 +43,17 @@ class CustomersApi {
             }
           }
 
-          if (typeof filters.isManager !== 'undefined') {
-            if (customer.isManager !== filters.isManager) {
+          if (typeof filters.role !== 'undefined') {
+            const roleMatched = customer.role === filters.role
+            if (!roleMatched) {
               return false;
             }
           }
-          if (typeof filters.isReceptionist !== 'undefined') {
-            if (customer.isReceptionist !== filters.isReceptionist) {
-              return false;
-            }
-          }
+          // if (typeof filters.isReceptionist !== 'undefined') {
+          //   if (customer.isReceptionist !== filters.isReceptionist) {
+          //     return false;
+          //   }
+          // }
 
           return true;
         });
