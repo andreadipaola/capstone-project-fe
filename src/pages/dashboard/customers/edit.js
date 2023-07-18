@@ -35,8 +35,8 @@ const useCustomer = () => {
   }, [isMounted]);
 
   useEffect(() => {
-      handleCustomerGet();
-    },
+    handleCustomerGet();
+  },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []);
 
@@ -80,7 +80,7 @@ const Page = () => {
                     <ArrowLeftIcon />
                   </SvgIcon>
                   <Typography variant="subtitle2">
-                    Customers
+                    Users
                   </Typography>
                 </Link>
               </div>

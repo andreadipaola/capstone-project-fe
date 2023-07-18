@@ -216,7 +216,8 @@ export const CustomerListTable = (props) => {
                   <TableCell align="right">
                     <IconButton
                       component={RouterLink}
-                      href={paths.dashboard.customers.edit}
+                      // href={paths.dashboard.customers.edit}
+                      to={`/dashboard/customers/${customer.userId}/edit`}
                     >
                       <SvgIcon>
                         <Edit02Icon />

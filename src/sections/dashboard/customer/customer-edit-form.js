@@ -19,36 +19,83 @@ import { wait } from 'src/utils/wait';
 
 export const CustomerEditForm = (props) => {
   const { customer, ...other } = props;
+  // const formik = useFormik({
+  //   initialValues: {
+  //     address1: customer.address1 || '',
+  //     address2: customer.address2 || '',
+  //     country: customer.country || '',
+  //     email: customer.email || '',
+  //     hasDiscount: customer.hasDiscount || false,
+  //     isVerified: customer.isVerified || false,
+  //     name: customer.name || '',
+  //     phone: customer.phone || '',
+  //     state: customer.state || '',
+  //     submit: null
+  //   },
+  //   validationSchema: Yup.object({
+  //     address1: Yup.string().max(255),
+  //     address2: Yup.string().max(255),
+  //     country: Yup.string().max(255),
+  //     email: Yup
+  //       .string()
+  //       .email('Must be a valid email')
+  //       .max(255)
+  //       .required('Email is required'),
+  //     hasDiscount: Yup.bool(),
+  //     isVerified: Yup.bool(),
+  //     name: Yup
+  //       .string()
+  //       .max(255)
+  //       .required('Name is required'),
+  //     phone: Yup.string().max(15),
+  //     state: Yup.string().max(255)
+  //   }),
+  //   onSubmit: async (values, helpers) => {
+  //     try {
+  //       // NOTE: Make API request
+  //       await wait(500);
+  //       helpers.setStatus({ success: true });
+  //       helpers.setSubmitting(false);
+  //       toast.success('Customer updated');
+  //     } catch (err) {
+  //       console.error(err);
+  //       toast.error('Something went wrong!');
+  //       helpers.setStatus({ success: false });
+  //       helpers.setErrors({ submit: err.message });
+  //       helpers.setSubmitting(false);
+  //     }
+  //   }
+  // });
   const formik = useFormik({
     initialValues: {
-      address1: customer.address1 || '',
-      address2: customer.address2 || '',
-      country: customer.country || '',
       email: customer.email || '',
-      hasDiscount: customer.hasDiscount || false,
-      isVerified: customer.isVerified || false,
-      name: customer.name || '',
+      firstName: customer.firstName || '',
+      lastName: customer.lastName || '',
+      role: customer.role || '',
       phone: customer.phone || '',
-      state: customer.state || '',
+      avatar: customer.avatar || '',
       submit: null
     },
     validationSchema: Yup.object({
-      address1: Yup.string().max(255),
-      address2: Yup.string().max(255),
-      country: Yup.string().max(255),
       email: Yup
         .string()
         .email('Must be a valid email')
         .max(255)
         .required('Email is required'),
-      hasDiscount: Yup.bool(),
-      isVerified: Yup.bool(),
-      name: Yup
+      firstName: Yup
         .string()
         .max(255)
-        .required('Name is required'),
+        .required('First Name is required'),
+      lastName: Yup
+        .string()
+        .max(255)
+        .required('Last Name is required'),
+      role: Yup
+        .string()
+        .max(15)
+        .required('Role is required'),
       phone: Yup.string().max(15),
-      state: Yup.string().max(255)
+      avatar: Yup.string().max(255)
     }),
     onSubmit: async (values, helpers) => {
       try {
@@ -56,7 +103,7 @@ export const CustomerEditForm = (props) => {
         await wait(500);
         helpers.setStatus({ success: true });
         helpers.setSubmitting(false);
-        toast.success('Customer updated');
+        toast.success('User updated');
       } catch (err) {
         console.error(err);
         toast.error('Something went wrong!');
@@ -72,7 +119,7 @@ export const CustomerEditForm = (props) => {
       onSubmit={formik.handleSubmit}
       {...other}>
       <Card>
-        <CardHeader title="Edit Customer" />
+        <CardHeader title="Edit User" />
         <CardContent sx={{ pt: 0 }}>
           <Grid
             container
@@ -83,15 +130,31 @@ export const CustomerEditForm = (props) => {
               md={6}
             >
               <TextField
-                error={!!(formik.touched.name && formik.errors.name)}
+                error={!!(formik.touched.firstName && formik.errors.firstName)}
                 fullWidth
-                helperText={formik.touched.name && formik.errors.name}
-                label="Full name"
-                name="name"
+                helperText={formik.touched.firstName && formik.errors.firstName}
+                label="First Name"
+                name="firstName"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 required
-                value={formik.values.name}
+                value={formik.values.firstName}
+              />
+            </Grid>
+            <Grid
+              xs={12}
+              md={6}
+            >
+              <TextField
+                error={!!(formik.touched.lastName && formik.errors.lastName)}
+                fullWidth
+                helperText={formik.touched.lastName && formik.errors.lastName}
+                label="Last Name"
+                name="lastName"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                required
+                value={formik.values.lastName}
               />
             </Grid>
             <Grid
@@ -110,7 +173,8 @@ export const CustomerEditForm = (props) => {
                 value={formik.values.email}
               />
             </Grid>
-            <Grid
+
+            {/* <Grid
               xs={12}
               md={6}
             >
@@ -124,8 +188,8 @@ export const CustomerEditForm = (props) => {
                 onChange={formik.handleChange}
                 value={formik.values.country}
               />
-            </Grid>
-            <Grid
+            </Grid> */}
+            {/* <Grid
               xs={12}
               md={6}
             >
@@ -139,8 +203,8 @@ export const CustomerEditForm = (props) => {
                 onChange={formik.handleChange}
                 value={formik.values.state}
               />
-            </Grid>
-            <Grid
+            </Grid> */}
+            {/* <Grid
               xs={12}
               md={6}
             >
@@ -154,8 +218,8 @@ export const CustomerEditForm = (props) => {
                 onChange={formik.handleChange}
                 value={formik.values.address1}
               />
-            </Grid>
-            <Grid
+            </Grid> */}
+            {/* <Grid
               xs={12}
               md={6}
             >
@@ -169,7 +233,7 @@ export const CustomerEditForm = (props) => {
                 onChange={formik.handleChange}
                 value={formik.values.address2}
               />
-            </Grid>
+            </Grid> */}
             <Grid
               xs={12}
               md={6}
@@ -185,13 +249,44 @@ export const CustomerEditForm = (props) => {
                 value={formik.values.phone}
               />
             </Grid>
+            <Grid
+              xs={12}
+              md={6}
+            >
+              <TextField
+                error={!!(formik.touched.role && formik.errors.role)}
+                fullWidth
+                helperText={formik.touched.role && formik.errors.role}
+                label="Role"
+                name="role"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                required
+                value={formik.values.role}
+              />
+            </Grid>
+            <Grid
+              xs={12}
+              md={6}
+            >
+              <TextField
+                error={!!(formik.touched.avatar && formik.errors.avatar)}
+                fullWidth
+                helperText={formik.touched.avatar && formik.errors.avatar}
+                label="Avatar"
+                name="avatar"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.avatar}
+              />
+            </Grid>
           </Grid>
           <Stack
             divider={<Divider />}
             spacing={3}
             sx={{ mt: 3 }}
           >
-            <Stack
+            {/* <Stack
               alignItems="center"
               direction="row"
               justifyContent="space-between"
@@ -220,8 +315,8 @@ export const CustomerEditForm = (props) => {
                 onChange={formik.handleChange}
                 value={formik.values.isVerified}
               />
-            </Stack>
-            <Stack
+            </Stack> */}
+            {/* <Stack
               alignItems="center"
               direction="row"
               justifyContent="space-between"
@@ -250,7 +345,7 @@ export const CustomerEditForm = (props) => {
                 onChange={formik.handleChange}
                 value={formik.values.hasDiscount}
               />
-            </Stack>
+            </Stack> */}
           </Stack>
         </CardContent>
         <Stack
