@@ -126,20 +126,20 @@ export const useSections = () => {
                 <Users03Icon />
               </SvgIcon>
             ),
-            items: [
-              {
-                title: t(tokens.nav.list),
-                path: paths.dashboard.guests.index
-              },
-              {
-                title: t(tokens.nav.details),
-                path: paths.dashboard.guests.details
-              },
-              {
-                title: t(tokens.nav.edit),
-                path: paths.dashboard.guests.edit
-              }
-            ]
+            // items: [
+            //   {
+            //     title: t(tokens.nav.list),
+            //     path: paths.dashboard.guests.index
+            //   },
+            //   {
+            //     title: t(tokens.nav.details),
+            //     path: paths.dashboard.guests.details
+            //   },
+            //   {
+            //     title: t(tokens.nav.edit),
+            //     path: paths.dashboard.guests.edit
+            //   }
+            // ]
           },
           {
             title: t(tokens.nav.reservations),
@@ -149,20 +149,20 @@ export const useSections = () => {
                 <ReceiptCheckIcon />
               </SvgIcon>
             ),
-            items: [
-              {
-                title: t(tokens.nav.list),
-                path: paths.dashboard.reservations.index
-              },
-              {
-                title: t(tokens.nav.details),
-                path: paths.dashboard.reservations.details
-              },
-              {
-                title: t(tokens.nav.edit),
-                path: paths.dashboard.reservations.edit
-              }
-            ]
+            // items: [
+            //   {
+            //     title: t(tokens.nav.list),
+            //     path: paths.dashboard.reservations.index
+            //   },
+            //   {
+            //     title: t(tokens.nav.details),
+            //     path: paths.dashboard.reservations.details
+            //   },
+            //   {
+            //     title: t(tokens.nav.edit),
+            //     path: paths.dashboard.reservations.edit
+            //   }
+            // ]
           },
           {
             title: t(tokens.nav.rooms),
@@ -172,20 +172,20 @@ export const useSections = () => {
                 <Users03Icon />
               </SvgIcon>
             ),
-            items: [
-              {
-                title: t(tokens.nav.list),
-                path: paths.dashboard.rooms.index
-              },
-              {
-                title: t(tokens.nav.details),
-                path: paths.dashboard.rooms.details
-              },
-              {
-                title: t(tokens.nav.edit),
-                path: paths.dashboard.rooms.edit
-              }
-            ]
+            // items: [
+            //   {
+            //     title: t(tokens.nav.list),
+            //     path: paths.dashboard.rooms.index
+            //   },
+            //   {
+            //     title: t(tokens.nav.details),
+            //     path: paths.dashboard.rooms.details
+            //   },
+            //   {
+            //     title: t(tokens.nav.edit),
+            //     path: paths.dashboard.rooms.edit
+            //   }
+            // ]
           },
           {
             title: t(tokens.nav.roomTypes),
@@ -195,20 +195,20 @@ export const useSections = () => {
                 <Building04Icon />
               </SvgIcon>
             ),
-            items: [
-              {
-                title: t(tokens.nav.list),
-                path: paths.dashboard.roomTypes.index
-              },
-              {
-                title: t(tokens.nav.details),
-                path: paths.dashboard.roomTypes.details
-              },
-              {
-                title: t(tokens.nav.edit),
-                path: paths.dashboard.roomTypes.edit
-              }
-            ]
+            // items: [
+            //   {
+            //     title: t(tokens.nav.list),
+            //     path: paths.dashboard.roomTypes.index
+            //   },
+            //   {
+            //     title: t(tokens.nav.details),
+            //     path: paths.dashboard.roomTypes.details
+            //   },
+            //   {
+            //     title: t(tokens.nav.edit),
+            //     path: paths.dashboard.roomTypes.edit
+            //   }
+            // ]
           },
           // {
           //   title: t(tokens.nav.productList),

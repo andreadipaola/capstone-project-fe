@@ -26,7 +26,7 @@ import { SeverityPill } from 'src/components/severity-pill';
 
 const statusMap = {
   REQUESTED: 'info',
-  PENDING: 'info',
+  PENDING: 'primary',
   CONFIRMED: 'success',
   CHECKED_IN: 'warning',
   CHECKED_OUT: 'warning',

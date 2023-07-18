@@ -31,13 +31,17 @@ const tabs = [
   //   value: 'isReturning'
   // },
   {
-    label: 'Managers',
-    value: 'isManager'
+    label: 'Manager',
+    value: 'MANAGER'
   },
   {
-    label: 'Receptionists',
-    value: 'isReceptionist'
-  }
+    label: 'Receptionist',
+    value: 'RECEPTIONIST'
+  },
+  {
+    label: 'Guest',
+    value: 'GUEST'
+  },
 ];
 
 const sortOptions = [
@@ -87,7 +91,9 @@ export const CustomerListSearch = (props) => {
   const { onFiltersChange, onSortChange, sortBy, sortDir } = props;
   const queryRef = useRef(null);
   const [currentTab, setCurrentTab] = useState('all');
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState({
+    role: undefined
+  });
 
   const handleFiltersUpdate = useCallback(() => {
     onFiltersChange?.(filters);
@@ -97,25 +103,35 @@ export const CustomerListSearch = (props) => {
     handleFiltersUpdate();
   }, [filters, handleFiltersUpdate]);
 
-  const handleTabsChange = useCallback((event, value) => {
-    setCurrentTab(value);
-    setFilters((prevState) => {
-      const updatedFilters = {
-        ...prevState,
-        // hasAcceptedMarketing: undefined,
-        // isProspect: undefined,
-        // isReturning: undefined,
-        isManager: undefined,
-        isReceptionist: undefined
-      };
+  const handleTabsChange = useCallback((event, tab) => {
+    setCurrentTab(tab);
+    const role = tab === 'all' ? undefined : tab;
 
-      if (value !== 'all') {
-        updatedFilters[value] = true;
-      }
-
-      return updatedFilters;
-    });
+    setFilters((prevState) => ({
+      ...prevState,
+      role
+    }));
   }, []);
+
+  // const handleTabsChange = useCallback((event, value) => {
+  //   setCurrentTab(value);
+  //   setFilters((prevState) => {
+  //     const updatedFilters = {
+  //       ...prevState,
+  //       // hasAcceptedMarketing: undefined,
+  //       // isProspect: undefined,
+  //       // isReturning: undefined,
+  //       isManager: undefined,
+  //       isReceptionist: undefined
+  //     };
+
+  //     if (value !== 'all') {
+  //       updatedFilters[value] = true;
+  //     }
+
+  //     return updatedFilters;
+  //   });
+  // }, []);
 
   const handleQueryChange = useCallback((event) => {
     event.preventDefault();

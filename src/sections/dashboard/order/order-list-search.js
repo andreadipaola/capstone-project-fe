@@ -49,10 +49,7 @@ const sortOptions = [
 
 export const OrderListSearch = (props) => {
   const {
-    onFiltersChange, onSortChange,
-    // sortBy = 'createdAt',
-    sortDir = 'asc'
-  } = props;
+    onFiltersChange, onSortChange, sortBy = 'createdAt', sortDir = 'asc' } = props;
   const queryRef = useRef(null);
   const [currentTab, setCurrentTab] = useState('all');
   const [filters, setFilters] = useState({

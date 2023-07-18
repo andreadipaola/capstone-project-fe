@@ -68,12 +68,43 @@ export const CustomerEditForm = (props) => {
   //     }
   //   }
   // });
+  const handleDelete = async (helpers) => {
+    try {
+      const token = sessionStorage.getItem('accessToken');
+      const headers = {
+        Authorization: `Bearer ${token}`
+      };
+      const res = await axios.delete('http://localhost:3001/users/' + customer.userId, { headers });
+      console.log(res);
+      await wait(500);
+      // helpers.setStatus({ success: true });
+      // helpers.setSubmitting(false);
+      toast.success('User deleted');
+    } catch (err) {
+      console.error(err);
+      toast.error('Something went wrong!');
+      // helpers.setStatus({ success: false });
+      // helpers.setErrors({ submit: err.message });
+      // helpers.setSubmitting(false);
+    }
+  }
   const formik = useFormik({
+    // initialValues: {
+    //   email: customer.email,
+    //   firstName: customer.firstName,
+    //   lastName: customer.lastName,
+    //   role: customer.role,
+    //   password: customer.password,
+    //   // phone: customer.phone,
+    //   avatar: customer.avatar,
+    //   submit: null
+    // },
     initialValues: {
       email: customer.email || '',
       firstName: customer.firstName || '',
       lastName: customer.lastName || '',
       role: customer.role || '',
+      password: customer.password || '',
       // phone: customer.phone || '',
       avatar: customer.avatar || '',
       submit: null
@@ -96,6 +127,10 @@ export const CustomerEditForm = (props) => {
         .string()
         .max(15)
         .required('Role is required'),
+      password: Yup
+        .string()
+        .max(255)
+        .required('Password is required'),
       // phone: Yup.string().max(15),
       avatar: Yup.string().max(255)
     }),
@@ -106,7 +141,7 @@ export const CustomerEditForm = (props) => {
           Authorization: `Bearer ${token}`
         };
         const res = await axios.put('http://localhost:3001/users/' + customer.userId, values, { headers });
-        console.log(res.data);
+        // console.log(res.data);
         // await customersApi.postCustomer(customer.userId);
         await wait(500);
         helpers.setStatus({ success: true });
@@ -119,7 +154,7 @@ export const CustomerEditForm = (props) => {
         helpers.setErrors({ submit: err.message });
         helpers.setSubmitting(false);
       }
-    }
+    },
     // onSubmit: async (values, helpers) => {
     //   try {
     //     // NOTE: Make API request
@@ -135,7 +170,11 @@ export const CustomerEditForm = (props) => {
     //     helpers.setSubmitting(false);
     //   }
     // }
+
   });
+
+
+
 
   return (
     <form
@@ -277,6 +316,23 @@ export const CustomerEditForm = (props) => {
               md={6}
             >
               <TextField
+                error={!!(formik.touched.password && formik.errors.password)}
+                fullWidth
+                helperText={formik.touched.password && formik.errors.password}
+                label="Password"
+                name="password"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                required
+                type="password"
+                value={formik.values.password}
+              />
+            </Grid>
+            <Grid
+              xs={12}
+              md={6}
+            >
+              <TextField
                 error={!!(formik.touched.role && formik.errors.role)}
                 fullWidth
                 helperText={formik.touched.role && formik.errors.role}
@@ -371,31 +427,54 @@ export const CustomerEditForm = (props) => {
             </Stack> */}
           </Stack>
         </CardContent>
-        <Stack
-          direction={{
-            xs: 'column',
-            sm: 'row'
-          }}
-          flexWrap="wrap"
-          spacing={3}
-          sx={{ p: 3 }}
-        >
-          <Button
-            disabled={formik.isSubmitting}
-            type="submit"
-            variant="contained"
+        <Stack direction="row" justifyContent="space-between">
+          <Stack
+            direction={{
+              xs: 'column',
+              sm: 'row'
+            }}
+            flexWrap="wrap"
+            spacing={3}
+            sx={{ p: 3 }}
           >
-            Update
-          </Button>
-          <Button
-            color="inherit"
-            component={RouterLink}
-            disabled={formik.isSubmitting}
-            // href={paths.dashboard.customers.details}
-            to={`/dashboard/customers/${customer.userId}/edit`}
-          >
-            Cancel
-          </Button>
+            <Button
+              disabled={formik.isSubmitting}
+              type="submit"
+              variant="contained"
+            >
+              Update
+            </Button>
+            <Button
+              color="inherit"
+              component={RouterLink}
+              disabled={formik.isSubmitting}
+              // href={paths.dashboard.customers.details}
+              to={`/dashboard/customers/${customer.userId}/edit`}
+            >
+              Cancel
+            </Button>
+
+          </Stack>
+          <Stack
+            direction={{
+              xs: 'column',
+              sm: 'row'
+            }}
+            flexWrap="wrap"
+            spacing={3}
+            sx={{ p: 3 }}>
+            <Button
+              color="error"
+              variant="outlined"
+              component={RouterLink}
+              disabled={formik.isSubmitting}
+              onClick={handleDelete}
+              // to={`/dashboard/customers/${customer.userId}/edit`}
+              to={`/dashboard/customers`}
+            >
+              Delete
+            </Button>
+          </Stack>
         </Stack>
       </Card>
     </form>
