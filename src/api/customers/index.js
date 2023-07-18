@@ -80,9 +80,30 @@ class CustomersApi {
     }
   }
 
-  getCustomer(request) {
-    return Promise.resolve(deepCopy(customer));
+  async getCustomer(customerId) {
+    const token = sessionStorage.getItem('accessToken');
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+    try {
+      const res = await axios.get(`http://localhost:3001/users/${customerId}`, { headers })
+      let data = res.data;
+      return {
+        data
+      }
+
+    } catch (err) {
+      console.error(err);
+      throw err;
+      // }    return Promise.resolve(deepCopy(customer));
+    }
   }
+
+
+
+  // getCustomer(request) {
+  //   return Promise.resolve(deepCopy(customer));
+  // }
 
   getEmails(request) {
     return Promise.resolve(deepCopy(emails));

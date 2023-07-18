@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import ArrowLeftIcon from '@untitled-ui/icons-react/build/esm/ArrowLeft';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -18,21 +19,26 @@ import { paths } from 'src/paths';
 import { CustomerEditForm } from 'src/sections/dashboard/customer/customer-edit-form';
 import { getInitials } from 'src/utils/get-initials';
 
+
 const useCustomer = () => {
   const isMounted = useMounted();
   const [customer, setCustomer] = useState(null);
+  const { customerId } = useParams();
+
 
   const handleCustomerGet = useCallback(async () => {
     try {
-      const response = await customersApi.getCustomer();
+      const response = await customersApi.getCustomer(customerId);
 
       if (isMounted()) {
-        setCustomer(response);
+        setCustomer(response.data);
+        console.log(customerId);
+        console.log(response.data);
       }
     } catch (err) {
       console.error(err);
     }
-  }, [isMounted]);
+  }, [isMounted, customerId]);
 
   useEffect(() => {
     handleCustomerGet();
@@ -42,6 +48,30 @@ const useCustomer = () => {
 
   return customer;
 };
+// const useCustomer = () => {
+//   const isMounted = useMounted();
+//   const [customer, setCustomer] = useState(null);
+
+//   const handleCustomerGet = useCallback(async () => {
+//     try {
+//       const response = await customersApi.getCustomer();
+
+//       if (isMounted()) {
+//         setCustomer(response);
+//       }
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   }, [isMounted]);
+
+//   useEffect(() => {
+//     handleCustomerGet();
+//   },
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//     []);
+
+//   return customer;
+// };
 
 const Page = () => {
   const customer = useCustomer();
@@ -105,7 +135,7 @@ const Page = () => {
                       width: 64
                     }}
                   >
-                    {getInitials(customer.name)}
+                    {getInitials(customer.firstName) + getInitials(customer.lastName)}
                   </Avatar>
                   <Stack spacing={1}>
                     <Typography variant="h4">
@@ -120,7 +150,7 @@ const Page = () => {
                         user_id:
                       </Typography>
                       <Chip
-                        label={customer.id}
+                        label={customer.userId}
                         size="small"
                       />
                     </Stack>

@@ -72,7 +72,7 @@ export const CustomerEditForm = (props) => {
       firstName: customer.firstName || '',
       lastName: customer.lastName || '',
       role: customer.role || '',
-      phone: customer.phone || '',
+      // phone: customer.phone || '',
       avatar: customer.avatar || '',
       submit: null
     },
@@ -94,7 +94,7 @@ export const CustomerEditForm = (props) => {
         .string()
         .max(15)
         .required('Role is required'),
-      phone: Yup.string().max(15),
+      // phone: Yup.string().max(15),
       avatar: Yup.string().max(255)
     }),
     onSubmit: async (values, helpers) => {
@@ -234,7 +234,7 @@ export const CustomerEditForm = (props) => {
                 value={formik.values.address2}
               />
             </Grid> */}
-            <Grid
+            {/* <Grid
               xs={12}
               md={6}
             >
@@ -248,7 +248,7 @@ export const CustomerEditForm = (props) => {
                 onChange={formik.handleChange}
                 value={formik.values.phone}
               />
-            </Grid>
+            </Grid> */}
             <Grid
               xs={12}
               md={6}
