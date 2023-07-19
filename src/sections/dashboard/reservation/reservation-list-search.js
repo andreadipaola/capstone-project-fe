@@ -18,18 +18,7 @@ const tabs = [
     label: 'All',
     value: 'all'
   },
-  // {
-  //   label: 'Accepts Marketing',
-  //   value: 'hasAcceptedMarketing'
-  // },
-  // {
-  //   label: 'Prospect',
-  //   value: 'isProspect'
-  // },
-  // {
-  //   label: 'Returning',
-  //   value: 'isReturning'
-  // },
+
   {
     label: 'Requested',
     value: 'REQUESTED'
@@ -37,7 +26,23 @@ const tabs = [
   {
     label: 'Pending',
     value: 'PENDING'
-  }
+  },
+  {
+    label: 'Confirmed',
+    value: 'CONFIRMED'
+  },
+  {
+    label: 'Cheked In',
+    value: 'CHECKED_IN'
+  },
+  {
+    label: 'Checked Out',
+    value: 'CHECKED_OUT'
+  },
+  {
+    label: 'Cancelled',
+    value: 'CANCELLED'
+  },
 ];
 
 const sortOptions = [
@@ -57,29 +62,21 @@ const sortOptions = [
     label: 'Departure Date (asc)',
     value: 'departureDate|asc'
   },
-  {
-    label: 'Check In (desc)',
-    value: 'checkin|desc'
-  },
-  {
-    label: 'Check In (asc)',
-    value: 'checkin|asc'
-  },
-  {
-    label: 'Check Out (desc)',
-    value: 'checkout|desc'
-  },
-  {
-    label: 'Check Out (asc)',
-    value: 'checkout|asc'
-  },
   // {
-  //   label: 'Total orders (highest)',
-  //   value: 'totalOrders|desc'
+  //   label: 'Check In (desc)',
+  //   value: 'checkin|desc'
   // },
   // {
-  //   label: 'Total orders (lowest)',
-  //   value: 'totalOrders|asc'
+  //   label: 'Check In (asc)',
+  //   value: 'checkin|asc'
+  // },
+  // {
+  //   label: 'Check Out (desc)',
+  //   value: 'checkout|desc'
+  // },
+  // {
+  //   label: 'Check Out (asc)',
+  //   value: 'checkout|asc'
   // }
 ];
 
@@ -87,7 +84,10 @@ export const ReservationListSearch = (props) => {
   const { onFiltersChange, onSortChange, sortBy, sortDir } = props;
   const queryRef = useRef(null);
   const [currentTab, setCurrentTab] = useState('all');
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState({
+    query: undefined,
+    bookingStatus: undefined
+  });
 
   const handleFiltersUpdate = useCallback(() => {
     onFiltersChange?.(filters);
@@ -97,31 +97,22 @@ export const ReservationListSearch = (props) => {
     handleFiltersUpdate();
   }, [filters, handleFiltersUpdate]);
 
-  const handleTabsChange = useCallback((event, value) => {
-    setCurrentTab(value);
-    setFilters((prevState) => {
-      const updatedFilters = {
-        ...prevState,
-        // hasAcceptedMarketing: undefined,
-        // isProspect: undefined,
-        // isReturning: undefined,
-        isManager: undefined,
-        isReceptionist: undefined
-      };
+  const handleTabsChange = useCallback((event, tab) => {
+    setCurrentTab(tab);
+    const bookingStatus = tab === 'all' ? undefined : tab;
 
-      if (value !== 'all') {
-        updatedFilters[value] = true;
-      }
-
-      return updatedFilters;
-    });
+    setFilters((prevState) => ({
+      ...prevState,
+      bookingStatus
+    }));
   }, []);
 
   const handleQueryChange = useCallback((event) => {
     event.preventDefault();
+    const query = queryRef.current?.value || '';
     setFilters((prevState) => ({
       ...prevState,
-      query: queryRef.current?.value
+      query
     }));
   }, []);
 

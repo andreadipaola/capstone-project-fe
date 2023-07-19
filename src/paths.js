@@ -65,6 +65,7 @@ export const paths = {
     crypto: '/dashboard/crypto',
     customers: {
       index: '/dashboard/customers',
+      create: '/dashboard/customers/create',
       details: '/dashboard/customers/:customerId',
       edit: '/dashboard/customers/:customerId/edit'
     },

@@ -117,7 +117,13 @@ export const CustomerListTable = (props) => {
                 Name
               </TableCell>
               <TableCell>
-                Email Address
+                Email
+              </TableCell>
+              <TableCell>
+                Password
+              </TableCell>
+              <TableCell>
+                Date Added
               </TableCell>
               <TableCell>
                 Role
@@ -186,17 +192,23 @@ export const CustomerListTable = (props) => {
                         >
                           {customer.firstName + " " + customer.lastName}
                         </Link>
-                        <Typography
+                        {/* <Typography
                           color="text.secondary"
                           variant="body2"
                         >
                           {customer.email}
-                        </Typography>
+                        </Typography> */}
                       </div>
                     </Stack>
                   </TableCell>
                   <TableCell>
                     {customer.email}
+                  </TableCell>
+                  <TableCell>
+                    {customer.phone}
+                  </TableCell>
+                  <TableCell>
+                    {customer.dateAdded}
                   </TableCell>
                   <TableCell>
                     <SeverityPill color={statusColor}>
@@ -226,7 +238,7 @@ export const CustomerListTable = (props) => {
                     </IconButton>
                     <IconButton
                       component={RouterLink}
-                      href={paths.dashboard.customers.details}
+                      // href={paths.dashboard.customers.details}
                       to={`/dashboard/customers/${customer.userId}/edit`}
                     >
                       <SvgIcon>

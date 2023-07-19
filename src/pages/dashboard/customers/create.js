@@ -10,53 +10,81 @@ import Stack from '@mui/material/Stack';
 import SvgIcon from '@mui/material/SvgIcon';
 import Typography from '@mui/material/Typography';
 
-import { reservationsApi } from 'src/api/reservations';
+import { customersApi } from 'src/api/customers';
 import { RouterLink } from 'src/components/router-link';
 import { Seo } from 'src/components/seo';
 import { useMounted } from 'src/hooks/use-mounted';
 import { usePageView } from 'src/hooks/use-page-view';
 import { paths } from 'src/paths';
-import { ReservationEditForm } from 'src/sections/dashboard/reservation/reservation-edit-form';
+import { CustomerCreateForm } from 'src/sections/dashboard/customer/customer-create-form';
 import { getInitials } from 'src/utils/get-initials';
 
-const useReservation = () => {
-  const isMounted = useMounted();
-  const [reservation, setReservation] = useState(null);
-  const { reservationId } = useParams();
 
-  const handleReservationGet = useCallback(async () => {
-    try {
-      const response = await reservationsApi.getReservation(reservationId);
+// const useCustomer = () => {
+//   const isMounted = useMounted();
+//   const [customer, setCustomer] = useState(null);
+//   const { customerId } = useParams();
 
-      if (isMounted()) {
-        setReservation(response.data);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  }, [isMounted, reservationId]);
 
-  useEffect(() => {
-    handleReservationGet();
-  },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []);
+//   const handleCustomerGet = useCallback(async () => {
+//     try {
+//       const response = await customersApi.getCustomer(customerId);
 
-  return reservation;
-};
+//       if (isMounted()) {
+//         setCustomer(response.data);
+//         console.log(customerId);
+//         console.log(response.data);
+//       }
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   }, [isMounted, customerId]);
+
+//   useEffect(() => {
+//     handleCustomerGet();
+//   },
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//     []);
+
+//   return customer;
+// };
+// const useCustomer = () => {
+//   const isMounted = useMounted();
+//   const [customer, setCustomer] = useState(null);
+
+//   const handleCustomerGet = useCallback(async () => {
+//     try {
+//       const response = await customersApi.getCustomer();
+
+//       if (isMounted()) {
+//         setCustomer(response);
+//       }
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   }, [isMounted]);
+
+//   useEffect(() => {
+//     handleCustomerGet();
+//   },
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//     []);
+
+//   return customer;
+// };
 
 const Page = () => {
-  const reservation = useReservation();
+  // const customer = useCustomer();
 
   usePageView();
 
-  if (!reservation) {
-    return null;
-  }
+  // if (!customer) {
+  //   return null;
+  // }
 
   return (
     <>
-      <Seo title="Dashboard: Reservation Edit" />
+      <Seo title="Dashboard: Customer Edit" />
       <Box
         component="main"
         sx={{
@@ -71,7 +99,7 @@ const Page = () => {
                 <Link
                   color="text.primary"
                   component={RouterLink}
-                  href={paths.dashboard.reservations.index}
+                  href={paths.dashboard.customers.index}
                   sx={{
                     alignItems: 'center',
                     display: 'inline-flex'
@@ -82,7 +110,7 @@ const Page = () => {
                     <ArrowLeftIcon />
                   </SvgIcon>
                   <Typography variant="subtitle2">
-                    Reservations
+                    Users
                   </Typography>
                 </Link>
               </div>
@@ -101,17 +129,17 @@ const Page = () => {
                   spacing={2}
                 >
                   <Avatar
-                    src={reservation.avatar}
+                    // src={customer.avatar}
                     sx={{
                       height: 64,
                       width: 64
                     }}
                   >
-                    {getInitials(reservation.name)}
+                    {/* {getInitials(customer.firstName) + getInitials(customer.lastName)} */}
                   </Avatar>
                   <Stack spacing={1}>
                     <Typography variant="h4">
-                      {reservation.email}
+                      {/* {customer.email} */}
                     </Typography>
                     <Stack
                       alignItems="center"
@@ -122,7 +150,7 @@ const Page = () => {
                         user_id:
                       </Typography>
                       <Chip
-                        label={reservation.id}
+                        // label={customer.userId}
                         size="small"
                       />
                     </Stack>
@@ -130,7 +158,9 @@ const Page = () => {
                 </Stack>
               </Stack>
             </Stack>
-            <ReservationEditForm reservation={reservation} />
+            {/* <CustomerEditForm customer={customer} /> */}
+            <CustomerCreateForm />
+
           </Stack>
         </Container>
       </Box>

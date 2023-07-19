@@ -15,16 +15,10 @@ class ReservationsApi {
     const { filters, page, rowsPerPage, sortBy, sortDir } = request;
     try {
       const res = await axios.get('http://localhost:3001/reservations', { headers })
-      // console.log(res);
-      // console.log(res.data);
-      // console.log(res.data.content);
-      // console.log(res.data.content.lenght);
       console.log(page);
       let data = res.data.content;
       let count = data.length;
 
-      // let data = deepCopy(reservations);
-      // let count = data.length;
 
       if (typeof filters !== 'undefined') {
         data = data.filter((reservation) => {
@@ -42,18 +36,12 @@ class ReservationsApi {
               return false;
             }
           }
-
-          if (typeof filters.isManager !== 'undefined') {
-            if (reservation.isManager !== filters.isManager) {
+          if (typeof filters.bookingStatus !== 'undefined') {
+            const reservationMatched = reservation.bookingStatus === filters.bookingStatus
+            if (!reservationMatched) {
               return false;
             }
           }
-          if (typeof filters.isReceptionist !== 'undefined') {
-            if (reservation.isReceptionist !== filters.isReceptionist) {
-              return false;
-            }
-          }
-
           return true;
         });
         count = data.length;

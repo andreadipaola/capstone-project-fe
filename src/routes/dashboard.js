@@ -16,6 +16,7 @@ const BlogPostCreatePage = lazy(() => import('src/pages/dashboard/blog/create'))
 
 // Customer
 const CustomerListPage = lazy(() => import('src/pages/dashboard/customers/list'));
+const CustomerCreatePage = lazy(() => import('src/pages/dashboard/customers/create'));
 const CustomerDetailPage = lazy(() => import('src/pages/dashboard/customers/detail'));
 const CustomerEditPage = lazy(() => import('src/pages/dashboard/customers/edit'));
 
@@ -132,6 +133,10 @@ export const dashboardRoutes = [
           {
             index: true,
             element: <CustomerListPage />
+          },
+          {
+            path: 'create',
+            element: <CustomerCreatePage />
           },
           {
             path: ':customerId',

@@ -1,9 +1,11 @@
 import numeral from 'numeral';
 import PropTypes from 'prop-types';
 import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight';
+import DeleteIcon from '@untitled-ui/icons-react/build/esm/Trash01';
 import Edit02Icon from '@untitled-ui/icons-react/build/esm/Edit02';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
@@ -47,7 +49,6 @@ export const ReservationListTable = (props) => {
     rowsPerPage = 0,
     selected = []
   } = props;
-
   const selectedSome = (selected.length > 0) && (selected.length < items.length);
   const selectedAll = (items.length > 0) && (selected.length === items.length);
   const enableBulkActions = selected.length > 0;
@@ -119,6 +120,9 @@ export const ReservationListTable = (props) => {
                 Id
               </TableCell>
               <TableCell>
+                Name
+              </TableCell>
+              <TableCell>
                 Arrival Date
               </TableCell>
               <TableCell>
@@ -127,15 +131,6 @@ export const ReservationListTable = (props) => {
               <TableCell>
                 Status
               </TableCell>
-              {/* <TableCell>
-                Location
-              </TableCell>
-              <TableCell>
-                Orders
-              </TableCell>
-              <TableCell>
-                Spent
-              </TableCell> */}
               <TableCell align="right">
                 Actions
               </TableCell>
@@ -144,8 +139,6 @@ export const ReservationListTable = (props) => {
           <TableBody>
             {items.map((reservation) => {
               const isSelected = selected.includes(reservation.reservationId);
-              const location = `${reservation.city}, ${reservation.state}, ${reservation.country}`;
-              const totalSpent = numeral(reservation.totalSpent).format(`${reservation.currency}0,0.00`);
               const statusColor = statusMap[reservation.bookingStatus];
 
               return (
@@ -154,20 +147,17 @@ export const ReservationListTable = (props) => {
                   key={reservation.reservationId}
                   selected={isSelected}
                 >
-                  {/* <TableCell padding="checkbox">
-                    <Checkbox
-                      checked={isSelected}
-                      onChange={(event) => {
-                        if (event.target.checked) {
-                          onSelectOne?.(reservation.reservationId);
-                        } else {
-                          onDeselectOne?.(reservation.reservationId);
-                        }
-                      }}
-                      value={isSelected}
+
+                  {/* <TableCell>
+                    <Chip
+                      label={reservation.reservationId}
+                      size="small"
                     />
                   </TableCell> */}
-                  {/* <TableCell>
+                  <TableCell>
+                    {reservation.reservationId}
+                  </TableCell>
+                  <TableCell>
                     <Stack
                       alignItems="center"
                       direction="row"
@@ -180,28 +170,25 @@ export const ReservationListTable = (props) => {
                           width: 42
                         }}
                       >
-                        {getInitials(reservation.firstName) + getInitials(reservation.lastName)}
+                        {getInitials(reservation.guest.firstName) + getInitials(reservation.guest.lastName)}
                       </Avatar>
                       <div>
                         <Link
                           color="inherit"
                           component={RouterLink}
-                          href={paths.dashboard.reservations.details}
+                          // href={paths.dashboard.customers.details}
                           variant="subtitle2"
                         >
-                          {reservation.firstName + " " + reservation.lastName}
+                          {reservation.guest.firstName + " " + reservation.guest.lastName}
                         </Link>
                         <Typography
                           color="text.secondary"
                           variant="body2"
                         >
-                          {reservation.email}
+                          {reservation.guest.email}
                         </Typography>
                       </div>
                     </Stack>
-                  </TableCell> */}
-                  <TableCell>
-                    {reservation.reservationId}
                   </TableCell>
                   <TableCell>
                     {reservation.arrivalDate}
@@ -214,21 +201,10 @@ export const ReservationListTable = (props) => {
                       {reservation.bookingStatus}
                     </SeverityPill>
                   </TableCell>
-                  {/* <TableCell>
-                    {location}
-                  </TableCell>
-                  <TableCell>
-                    {reservation.totalOrders}
-                  </TableCell>
-                  <TableCell>
-                    <Typography variant="subtitle2">
-                      {totalSpent}
-                    </Typography>
-                  </TableCell> */}
                   <TableCell align="right">
                     <IconButton
                       component={RouterLink}
-                      href={paths.dashboard.reservations.edit}
+                      to={`/dashboard/customers/${reservation.reservationId}/edit`}
                     >
                       <SvgIcon>
                         <Edit02Icon />
@@ -236,10 +212,10 @@ export const ReservationListTable = (props) => {
                     </IconButton>
                     <IconButton
                       component={RouterLink}
-                      href={paths.dashboard.reservations.details}
+                      to={`/dashboard/customers/${reservation.reservationId}/edit`}
                     >
                       <SvgIcon>
-                        <ArrowRightIcon />
+                        <DeleteIcon />
                       </SvgIcon>
                     </IconButton>
                   </TableCell>

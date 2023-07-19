@@ -3,6 +3,7 @@ import axios from 'axios';
 import Download01Icon from "@untitled-ui/icons-react/build/esm/Download01";
 import PlusIcon from "@untitled-ui/icons-react/build/esm/Plus";
 import Upload01Icon from "@untitled-ui/icons-react/build/esm/Upload01";
+import Link from '@mui/material/Link';
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -18,6 +19,8 @@ import { usePageView } from "src/hooks/use-page-view";
 import { useSelection } from "src/hooks/use-selection";
 import { CustomerListSearch } from "src/sections/dashboard/customer/customer-list-search";
 import { CustomerListTable } from "src/sections/dashboard/customer/customer-list-table";
+import { RouterLink } from 'src/components/router-link';
+import { paths } from 'src/paths';
 
 const useCustomersSearch = () => {
   const [state, setState] = useState({
@@ -217,18 +220,42 @@ const Page = () => {
                   </Button> */}
                 </Stack>
               </Stack>
-              <Stack alignItems="center" direction="row" spacing={3}>
-                <Button
-                  startIcon={
-                    <SvgIcon>
-                      <PlusIcon />
-                    </SvgIcon>
-                  }
-                  variant="contained"
+
+              {/* <Link
+                  color="text.primary"
+                  component={RouterLink}
+                  href={paths.dashboard.customers.index}
+                  sx={{
+                    alignItems: 'center',
+                    display: 'inline-flex'
+                  }}
+                  underline="hover"
                 >
-                  Add
-                </Button>
+                  <SvgIcon sx={{ mr: 1 }}>
+                    <ArrowLeftIcon />
+                  </SvgIcon>
+                  <Typography variant="subtitle2">
+                    Users
+                  </Typography>
+                </Link> */}
+
+              <Stack alignItems="center" direction="row" spacing={3}>
+                <Link
+                  component={RouterLink}
+                  href={paths.dashboard.customers.create}>
+                  <Button
+                    startIcon={
+                      <SvgIcon>
+                        <PlusIcon />
+                      </SvgIcon>
+                    }
+                    variant="contained"
+                  >
+                    Add
+                  </Button>
+                </Link>
               </Stack>
+
             </Stack>
             <Card>
               <CustomerListSearch
