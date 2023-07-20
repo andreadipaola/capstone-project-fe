@@ -183,12 +183,12 @@ export const GuestListTable = (props) => {
                         >
                           {guest.firstName + " " + guest.lastName}
                         </Link>
-                        <Typography
+                        {/* <Typography
                           color="text.secondary"
                           variant="body2"
                         >
                           {guest.email}
-                        </Typography>
+                        </Typography> */}
                       </div>
                     </Stack>
                   </TableCell>

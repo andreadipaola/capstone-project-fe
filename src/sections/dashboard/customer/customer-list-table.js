@@ -117,10 +117,10 @@ export const CustomerListTable = (props) => {
                 Name
               </TableCell>
               <TableCell>
-                Email
+                Email Address
               </TableCell>
               <TableCell>
-                Password
+                Phone
               </TableCell>
               <TableCell>
                 Date Added

@@ -32,6 +32,17 @@ class ReservationsApi {
               }
             });
 
+            if ((reservation.guest.firstName).toLowerCase().includes(filters.query.toLowerCase())) {
+              queryMatched = true;
+            }
+            if ((reservation.guest.lastName).toLowerCase().includes(filters.query.toLowerCase())) {
+              queryMatched = true;
+            }
+            if ((reservation.guest.email).toLowerCase().includes(filters.query.toLowerCase())) {
+              queryMatched = true;
+            }
+
+
             if (!queryMatched) {
               return false;
             }

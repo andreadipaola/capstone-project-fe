@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { useCallback, useState, useEffect } from 'react';
+import Autocomplete from '@mui/material/Autocomplete';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
@@ -19,8 +21,18 @@ import { paths } from 'src/paths';
 import { wait } from 'src/utils/wait';
 import axios from 'axios';
 
+const roles = [
+  { text: 'Manager', value: 'MANAGER' },
+  { text: 'Receptionist', value: 'RECEPTIONIST' },
+  { text: 'Guest', value: 'GUEST' }
+];
+// const statusOptions = ['MANAGER', 'RECEPTIONIST', 'GUEST'];
 export const CustomerEditForm = (props) => {
   const { customer, ...other } = props;
+  // const [status, setStatus] = useState(statusOptions[0]);
+  // const handleChange = useCallback((event) => {
+  //   setStatus(event.target.value);
+  // }, []);
   // const formik = useFormik({
   //   initialValues: {
   //     address1: customer.address1 || '',
@@ -88,6 +100,7 @@ export const CustomerEditForm = (props) => {
       // helpers.setSubmitting(false);
     }
   }
+  const roleOption = roles.find((role) => role.value === customer.role);
   const formik = useFormik({
     // initialValues: {
     //   email: customer.email,
@@ -103,9 +116,11 @@ export const CustomerEditForm = (props) => {
       email: customer.email || '',
       firstName: customer.firstName || '',
       lastName: customer.lastName || '',
-      role: customer.role || '',
+      // role: customer.role || '',
+      // role: roleOption || { text: '', value: '' },
+      role: roleOption || null,
       password: customer.password || '',
-      // phone: customer.phone || '',
+      phone: customer.phone || '',
       avatar: customer.avatar || '',
       submit: null
     },
@@ -123,15 +138,15 @@ export const CustomerEditForm = (props) => {
         .string()
         .max(255)
         .required('Last Name is required'),
-      role: Yup
-        .string()
-        .max(15)
-        .required('Role is required'),
+      // role: Yup
+      //   .string()
+      //   .max(15)
+      //   .required('Role is required'),
       password: Yup
         .string()
         .max(255)
         .required('Password is required'),
-      // phone: Yup.string().max(15),
+      phone: Yup.string().max(15),
       avatar: Yup.string().max(255)
     }),
     onSubmit: async (values, helpers) => {
@@ -172,6 +187,10 @@ export const CustomerEditForm = (props) => {
     // }
 
   });
+
+  useEffect(() => {
+    formik.setFieldValue('role', customer.role || '');
+  }, [customer.role, formik.setFieldValue]);
 
 
 
@@ -233,6 +252,22 @@ export const CustomerEditForm = (props) => {
                 onChange={formik.handleChange}
                 required
                 value={formik.values.email}
+              />
+            </Grid>
+            <Grid
+              xs={12}
+              md={6}
+            >
+              <TextField
+                error={!!(formik.touched.phone && formik.errors.phone)}
+                fullWidth
+                helperText={formik.touched.phone && formik.errors.phone}
+                label="Phone"
+                name="phone"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                required
+                value={formik.values.phone}
               />
             </Grid>
 
@@ -328,7 +363,7 @@ export const CustomerEditForm = (props) => {
                 value={formik.values.password}
               />
             </Grid>
-            <Grid
+            {/* <Grid
               xs={12}
               md={6}
             >
@@ -342,6 +377,34 @@ export const CustomerEditForm = (props) => {
                 onChange={formik.handleChange}
                 required
                 value={formik.values.role}
+              />
+            </Grid> */}
+            <Grid
+              xs={12}
+              md={6}
+            >
+              <Autocomplete
+                options={roles}
+                label="Role"
+                getOptionLabel={(option) => option.text}
+                onChange={(event, value) => {
+                  formik.setFieldValue('role', value ? value.value : '');
+                }}
+                // value={formik.values.role || null}
+                value={roles.find((option) => option.value === formik.values.role) || null}
+                // onChange={formik.handleChange}s
+                // onBlur={formik.handleBlur}
+                // error={formik.touched.role && !!formik.errors.role}
+                // helperText={formik.touched.role && formik.errors.role}
+                renderInput={(params) => (
+                  <TextField {...params}
+                    required
+                    label="Role"
+                    name="role"
+                    fullWidth
+                  // value={formik.values.role}
+                  />
+                )}
               />
             </Grid>
             <Grid
