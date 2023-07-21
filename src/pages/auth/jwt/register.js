@@ -2,7 +2,6 @@ import { useState } from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import Alert from '@mui/material/Alert';
-// import AlertTitle from '@mui/material/AlertTitle';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -23,7 +22,6 @@ import { usePageView } from 'src/hooks/use-page-view';
 import { useRouter } from 'src/hooks/use-router';
 import { useSearchParams } from 'src/hooks/use-search-params';
 import { paths } from 'src/paths';
-import { AuthIssuer } from 'src/sections/auth/auth-issuer';
 
 const initialValues = {
   firstName: '',
@@ -64,7 +62,7 @@ const Page = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const returnTo = searchParams.get('returnTo');
-  const { issuer, signUp } = useAuth();
+  const { signUp } = useAuth();
   const [successMessage, setSuccessMessage] = useState(null);
   const formik = useFormik({
     initialValues,
@@ -229,10 +227,8 @@ const Page = () => {
               {successMessage}
             </div>
           </Alert>
-          {/* <AuthIssuer issuer={issuer} /> */}
         </Stack>)}
         <Box sx={{ mt: 3 }}>
-          {/* <AuthIssuer issuer={issuer} /> */}
         </Box>
       </div>
     </>

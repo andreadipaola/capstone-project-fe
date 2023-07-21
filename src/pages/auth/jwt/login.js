@@ -20,7 +20,6 @@ import { usePageView } from 'src/hooks/use-page-view';
 import { useRouter } from 'src/hooks/use-router';
 import { useSearchParams } from 'src/hooks/use-search-params';
 import { paths } from 'src/paths';
-import { AuthIssuer } from 'src/sections/auth/auth-issuer';
 
 const initialValues = {
   email: 'andr3a.dipaola@gmail.com',
@@ -45,7 +44,7 @@ const Page = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const returnTo = searchParams.get('returnTo');
-  const { issuer, signIn } = useAuth();
+  const { signIn } = useAuth();
   const [errorMessage, setErrorMessage] = useState(null);
   const formik = useFormik({
     initialValues,
@@ -56,7 +55,7 @@ const Page = () => {
 
 
         if (isMounted()) {
-          router.push(returnTo || paths.dashboard.index);
+          router.push(returnTo || paths.dashboard.reservations.index);
         }
       } catch (err) {
         console.error(err);
@@ -159,7 +158,6 @@ const Page = () => {
               {errorMessage}
             </div>
           </Alert>
-          {/* <AuthIssuer issuer={issuer} /> */}
         </Stack>)}
       </div>
     </>
