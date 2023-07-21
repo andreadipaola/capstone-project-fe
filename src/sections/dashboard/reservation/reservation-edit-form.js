@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
-import { useCallback, useState, useEffect } from 'react';
-// import { format } from 'date-fns';
+import { useState, useEffect } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -14,12 +12,8 @@ import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Unstable_Grid2';
 import Stack from '@mui/material/Stack';
-import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 
 import { reservationsApi } from "src/api/reservations";
@@ -39,8 +33,6 @@ const statuses = [
 
 export const ReservationEditForm = (props) => {
   const { reservation, ...other } = props;
-  // const [startDate, setStartDate] = useState(new Date());
-  // const [endDate, setEndDate] = useState(new Date());
   const [startDate, setStartDate] = useState(dayjs(reservation.arrivalDate).toDate());
   const [endDate, setEndDate] = useState(dayjs(reservation.departureDate).toDate());
 
@@ -139,49 +131,12 @@ export const ReservationEditForm = (props) => {
             container
             spacing={3}
           >
-            {/* <Stack
-              alignItems="center"
-              direction="row"
-              spacing={3}
-            >
-              <MobileDatePicker
-                label="Start Date"
-                onChange={(newDate) => setStartDate(newDate)}
-                value={startDate}
-              />
-              <MobileDatePicker
-                label="End Date"
-                onChange={(newDate) => setEndDate(newDate)}
-                value={endDate}
-              />
-            </Stack> */}
-            {/* <Grid container justifyContent="space-between"> */}
-
-
-            {/* <Grid xs={12} md={6}>
-                <MobileDatePicker
-                  label="Start Date"
-                  onChange={(newDate) => setStartDate(newDate)}
-                  value={startDate}
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <MobileDatePicker
-                  label="End Date"
-                  onChange={(newDate) => setEndDate(newDate)}
-                  value={endDate}
-                  fullWidth
-                />
-              </Grid> */}
-            {/* </Grid> */}
-
 
             <Grid
               xs={12}
               md={6}
             >
-              <DemoItem label="Responsive variant" component="DateRangePicker">
+              <DemoItem component="DateRangePicker">
                 <DateRangePicker
                   value={[startDate, endDate]}
                   onChange={(newDates) => {
@@ -212,7 +167,7 @@ export const ReservationEditForm = (props) => {
                 name="firstName"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                required
+                disabled
                 value={formik.values.firstName}
               />
             </Grid>
@@ -228,7 +183,7 @@ export const ReservationEditForm = (props) => {
                 name="lastName"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                required
+                disabled
                 value={formik.values.lastName}
               />
             </Grid>
@@ -244,7 +199,7 @@ export const ReservationEditForm = (props) => {
                 name="email"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                required
+                disabled
                 value={formik.values.email}
               />
             </Grid>
