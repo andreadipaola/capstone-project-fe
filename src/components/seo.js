@@ -5,8 +5,8 @@ export const Seo = (props) => {
   const { title } = props;
 
   const fullTitle = title
-    ? title + ' | Devias Kit PRO'
-    : 'Devias Kit PRO';
+    ? title + ' | PandaRooms'
+    : 'PandaRooms';
 
   return (
     <Helmet>
