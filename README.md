@@ -1,6 +1,6 @@
 # PandaRooms 🐼🏨
 
-![Banner di PandaRooms](public/assets/project-banners/all-immagine-banner.png)
+![Banner di PandaRooms](public/assets/project-banners/reservations.png)
 
 PandaRooms è una web application per la gestione di una struttura alberghiera. Offre agli albergatori una piattaforma integrata per gestire al meglio le prenotazioni, le stanze e i propri ospiti attraverso l'automazione dei processi.
 
