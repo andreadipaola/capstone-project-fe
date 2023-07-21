@@ -19,10 +19,12 @@ import { paths } from 'src/paths';
 import { ReservationEditForm } from 'src/sections/dashboard/reservation/reservation-edit-form';
 import { getInitials } from 'src/utils/get-initials';
 
+
 const useReservation = () => {
   const isMounted = useMounted();
   const [reservation, setReservation] = useState(null);
   const { reservationId } = useParams();
+
 
   const handleReservationGet = useCallback(async () => {
     try {
@@ -30,6 +32,8 @@ const useReservation = () => {
 
       if (isMounted()) {
         setReservation(response.data);
+        console.log(reservationId);
+        console.log(response.data);
       }
     } catch (err) {
       console.error(err);
@@ -44,6 +48,30 @@ const useReservation = () => {
 
   return reservation;
 };
+// const useReservation = () => {
+//   const isMounted = useMounted();
+//   const [reservation, setReservation] = useState(null);
+
+//   const handleReservationGet = useCallback(async () => {
+//     try {
+//       const response = await reservationsApi.getReservation();
+
+//       if (isMounted()) {
+//         setReservation(response);
+//       }
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   }, [isMounted]);
+
+//   useEffect(() => {
+//     handleReservationGet();
+//   },
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//     []);
+
+//   return reservation;
+// };
 
 const Page = () => {
   const reservation = useReservation();
@@ -107,11 +135,11 @@ const Page = () => {
                       width: 64
                     }}
                   >
-                    {getInitials(reservation.name)}
+                    {getInitials(reservation.guest.firstName) + getInitials(reservation.guest.lastName)}
                   </Avatar>
                   <Stack spacing={1}>
                     <Typography variant="h4">
-                      {reservation.email}
+                      {reservation.guest.email}
                     </Typography>
                     <Stack
                       alignItems="center"
@@ -119,10 +147,10 @@ const Page = () => {
                       spacing={1}
                     >
                       <Typography variant="subtitle2">
-                        user_id:
+                        reservation_id:
                       </Typography>
                       <Chip
-                        label={reservation.id}
+                        label={reservation.reservationId}
                         size="small"
                       />
                     </Stack>

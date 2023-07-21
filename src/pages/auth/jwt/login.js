@@ -79,23 +79,23 @@ const Page = () => {
       <div>
         <Card elevation={16}>
           <CardHeader
-            subheader={(
-              <Typography
-                color="text.secondary"
-                variant="body2"
-              >
-                Don&apos;t have an account?
-                &nbsp;
-                <Link
-                  component={RouterLink}
-                  href={paths.auth.jwt.register}
-                  underline="hover"
-                  variant="subtitle2"
-                >
-                  Register
-                </Link>
-              </Typography>
-            )}
+            // subheader={(
+            //   <Typography
+            //     color="text.secondary"
+            //     variant="body2"
+            //   >
+            //     Don&apos;t have an account?
+            //     &nbsp;
+            //     <Link
+            //       component={RouterLink}
+            //       href={paths.auth.jwt.register}
+            //       underline="hover"
+            //       variant="subtitle2"
+            //     >
+            //       Register
+            //     </Link>
+            //   </Typography>
+            // )}
             sx={{ pb: 0 }}
             title="Log in"
           />

@@ -204,7 +204,7 @@ export const ReservationListTable = (props) => {
                   <TableCell align="right">
                     <IconButton
                       component={RouterLink}
-                      to={`/dashboard/customers/${reservation.reservationId}/edit`}
+                      to={`/dashboard/reservations/${reservation.reservationId}/edit`}
                     >
                       <SvgIcon>
                         <Edit02Icon />

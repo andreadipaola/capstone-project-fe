@@ -128,18 +128,18 @@ const Page = () => {
                   direction="row"
                   spacing={2}
                 >
-                  <Avatar
-                    // src={customer.avatar}
+                  {/* <Avatar
+                    src={customer.avatar}
                     sx={{
                       height: 64,
                       width: 64
                     }}
                   >
-                    {/* {getInitials(customer.firstName) + getInitials(customer.lastName)} */}
-                  </Avatar>
-                  <Stack spacing={1}>
+                    {getInitials(customer.firstName) + getInitials(customer.lastName)}
+                  </Avatar> */}
+                  {/* <Stack spacing={1}>
                     <Typography variant="h4">
-                      {/* {customer.email} */}
+                      {customer.email}
                     </Typography>
                     <Stack
                       alignItems="center"
@@ -154,7 +154,7 @@ const Page = () => {
                         size="small"
                       />
                     </Stack>
-                  </Stack>
+                  </Stack> */}
                 </Stack>
               </Stack>
             </Stack>
@@ -162,8 +162,8 @@ const Page = () => {
             <CustomerCreateForm />
 
           </Stack>
-        </Container>
-      </Box>
+        </Container >
+      </Box >
     </>
   );
 };

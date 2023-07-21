@@ -249,67 +249,67 @@ export const useSections = () => {
           //     }
           //   ]
           // },
-          {
-            title: t(tokens.nav.payments),
-            icon: (
-              <SvgIcon fontSize="small">
-                <ShoppingCart01Icon />
-              </SvgIcon>
-            ),
-            path: paths.dashboard.orders.index,
-            items: [
-              {
-                title: t(tokens.nav.list),
-                path: paths.dashboard.orders.index
-              },
-              {
-                title: t(tokens.nav.details),
-                path: paths.dashboard.orders.details
-              }
-            ]
-          },
-          {
-            title: t(tokens.nav.invoices),
-            path: paths.dashboard.invoices.index,
-            icon: (
-              <SvgIcon fontSize="small">
-                <ReceiptCheckIcon />
-              </SvgIcon>
-            ),
-            items: [
-              {
-                title: t(tokens.nav.list),
-                path: paths.dashboard.invoices.index
-              },
-              {
-                title: t(tokens.nav.details),
-                path: paths.dashboard.invoices.details
-              }
-            ]
-          },
-          {
-            title: t(tokens.nav.hotel),
-            path: paths.dashboard.customers.index,
-            icon: (
-              <SvgIcon fontSize="small">
-                <Users03Icon />
-              </SvgIcon>
-            ),
-            items: [
-              {
-                title: t(tokens.nav.list),
-                path: paths.dashboard.customers.index
-              },
-              {
-                title: t(tokens.nav.details),
-                path: paths.dashboard.customers.details
-              },
-              {
-                title: t(tokens.nav.edit),
-                path: paths.dashboard.customers.edit
-              }
-            ]
-          },
+          // {
+          //   title: t(tokens.nav.payments),
+          //   icon: (
+          //     <SvgIcon fontSize="small">
+          //       <ShoppingCart01Icon />
+          //     </SvgIcon>
+          //   ),
+          //   path: paths.dashboard.orders.index,
+          //   items: [
+          //     {
+          //       title: t(tokens.nav.list),
+          //       path: paths.dashboard.orders.index
+          //     },
+          //     {
+          //       title: t(tokens.nav.details),
+          //       path: paths.dashboard.orders.details
+          //     }
+          //   ]
+          // },
+          // {
+          //   title: t(tokens.nav.invoices),
+          //   path: paths.dashboard.invoices.index,
+          //   icon: (
+          //     <SvgIcon fontSize="small">
+          //       <ReceiptCheckIcon />
+          //     </SvgIcon>
+          //   ),
+          //   items: [
+          //     {
+          //       title: t(tokens.nav.list),
+          //       path: paths.dashboard.invoices.index
+          //     },
+          //     {
+          //       title: t(tokens.nav.details),
+          //       path: paths.dashboard.invoices.details
+          //     }
+          //   ]
+          // },
+          // {
+          //   title: t(tokens.nav.hotel),
+          //   path: paths.dashboard.customers.index,
+          //   icon: (
+          //     <SvgIcon fontSize="small">
+          //       <Users03Icon />
+          //     </SvgIcon>
+          //   ),
+          //   items: [
+          //     {
+          //       title: t(tokens.nav.list),
+          //       path: paths.dashboard.customers.index
+          //     },
+          //     {
+          //       title: t(tokens.nav.details),
+          //       path: paths.dashboard.customers.details
+          //     },
+          //     {
+          //       title: t(tokens.nav.edit),
+          //       path: paths.dashboard.customers.edit
+          //     }
+          //   ]
+          // },
           // {
           //   title: t(tokens.nav.logistics),
           //   path: paths.dashboard.logistics.index,

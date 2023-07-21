@@ -8,7 +8,7 @@ import axios from 'axios';
 class ReservationsApi {
   async getReservations(request = {}) {
     const token = sessionStorage.getItem('accessToken');
-    // const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRyM2EuZGlwYW9sYUBnbWFpbC5jb20iLCJpYXQiOjE2ODk0NDY4NzIsImV4cCI6MTY5MDA1MTY3Mn0.lDvX_jt6_v3SDdY3qtcn1oal9NLJ3W7vm7XLAShcfM0";
+    // const accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRyM2EuZGlwYW9sYUBnbWFpbC5jb20iLCJpYXQiOjE2ODk0NDY4NzIsImV4cCI6MTY5MDA1MTY3Mn0.lDvX_jt6_v3SDdY3qtcn1oal9NLJ3W7vm7XLAShcfM0";
     const headers = {
       Authorization: `Bearer ${token}`
     };
@@ -18,7 +18,6 @@ class ReservationsApi {
       console.log(page);
       let data = res.data.content;
       let count = data.length;
-
 
       if (typeof filters !== 'undefined') {
         data = data.filter((reservation) => {
@@ -79,9 +78,24 @@ class ReservationsApi {
     }
   }
 
-  getReservation(request) {
-    return Promise.resolve(deepCopy(reservation));
+  async getReservation(reservationId) {
+    const token = sessionStorage.getItem('accessToken');
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+    try {
+      const res = await axios.get(`http://localhost:3001/reservations/${reservationId}`, { headers })
+      let data = res.data;
+      return {
+        data
+      }
+
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
   }
+
 
   getEmails(request) {
     return Promise.resolve(deepCopy(emails));

@@ -145,7 +145,7 @@ export const MobileNav = (props) => {
             spacing={2}
             sx={{ p: 3 }}
           >
-            <Box
+            {/* <Box
               component={RouterLink}
               href={paths.index}
               sx={{
@@ -160,7 +160,7 @@ export const MobileNav = (props) => {
               }}
             >
               <Logo />
-            </Box>
+            </Box> */}
             <TenantSwitch sx={{ flexGrow: 1 }} />
           </Stack>
           <Stack

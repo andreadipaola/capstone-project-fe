@@ -187,7 +187,7 @@ export const SideNav = (props) => {
             spacing={2}
             sx={{ p: 3 }}
           >
-            <Box
+            {/* <Box
               component={RouterLink}
               href={paths.index}
               sx={{
@@ -201,8 +201,8 @@ export const SideNav = (props) => {
                 width: 40
               }}
             >
-              {/* <Logo /> */}
-            </Box>
+              <Logo />
+            </Box> */}
             <TenantSwitch sx={{ flexGrow: 1 }} />
           </Stack>
           <Stack

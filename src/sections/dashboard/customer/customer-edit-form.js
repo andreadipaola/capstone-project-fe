@@ -138,10 +138,6 @@ export const CustomerEditForm = (props) => {
         .string()
         .max(255)
         .required('Last Name is required'),
-      // role: Yup
-      //   .string()
-      //   .max(15)
-      //   .required('Role is required'),
       password: Yup
         .string()
         .max(255)
@@ -190,6 +186,7 @@ export const CustomerEditForm = (props) => {
 
   useEffect(() => {
     formik.setFieldValue('role', customer.role || '');
+    console.log("User", customer.role);
   }, [customer.role, formik.setFieldValue]);
 
 
