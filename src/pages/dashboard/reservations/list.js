@@ -31,7 +31,7 @@ const useReservationsSearch = () => {
     },
     page: 0,
     rowsPerPage: 5,
-    sortBy: "bookingStatus",
+    sortBy: "arrivalDate",
     sortDir: "asc"
   });
 
