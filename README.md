@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# PandaRooms 🐼🏨
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Banner di PandaRooms](public/assets/project-banners/all-immagine-banner.png)
 
-## Available Scripts
+PandaRooms è una web application per la gestione di una struttura alberghiera. Offre agli albergatori una piattaforma integrata per gestire al meglio le prenotazioni, le stanze e i propri ospiti attraverso l'automazione dei processi.
 
-In the project directory, you can run:
+## Funzionalità 🚀
 
-### `npm start`
+1. Gestione del login attraverso token JWT (non è previsto un form per la registrazione poiché in un'ottica di produzione, verranno fornite delle credenziali al cliente che stipulerà un contratto, con le quali potrà accedere e usufruire di tutte le funzionalità fornite da PandaRooms).
+2. Gestione completa di ospiti, prenotazioni, stanze, tipo di stanze, collaboratori (visualizzazione lista, creazione, modifica, cancellazione).
+3. Operazioni di filtraggio su vari campi, variabili in base all'elemento gestito.
+4. Operazioni di ricerca su vari campi, anch'esse variabili in base all'elemento che si sta gestendo.
+5. Paginazione.
+6. Gestione delle autorizzazioni.
+7. Layout responsive.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Tecnologie Utilizzate 💻
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Front-end: React
+- Back-end: Java, Spring Boot
+- Database: PostgreSQL
 
-### `npm test`
+## Installazione e Utilizzo 🛠️
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Front-End
 
-### `npm run build`
+1. Clona il repository del front-end di PandaRooms: ```git clone https://github.com/andreadipaola/capstone-project-fe.git```
+2. Entra nella directory del front-end: ```cd capstone-project-fe```
+3. Installa le dipendenze: ```npm install```
+4. Avvia l'applicazione: ```npm start```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Back-End e DB
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clona il repository del back-end di PandaRooms: ```git clone https://github.com/andreadipaola/capstone-project-be.git```
+2. Entra nella directory del back-end: ```cd capstone-project-be```
+3. Importa il progetto in un IDE compatibile con Java e Spring Boot.
+4. Configura il database PostgreSQL con le credenziali appropriate contenute nel file `application.properties`.
+5. Avvia il server del back-end tramite l'IDE.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Il backend di PandaRooms sarà ora in esecuzione e pronto per gestire le richieste del front-end.
 
-### `npm run eject`
+Ora PandaRooms è completamente installato e funzionante. Puoi accedere all'applicazione front-end all'indirizzo http://localhost:3000 e iniziare a gestire le prenotazioni, gli ospiti e le stanze della tua struttura alberghiera attraverso l'interfaccia intuitiva di PandaRooms.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+🚀🐼 Grazie per aver scelto PandaRooms! Spero che ti sia utile nella gestione della tua struttura alberghiera.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contatti 📞
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Email: andr3a.dipaola@gmail.com
+- GitHub: [andreadipaola](https://github.com/andreadipaola)
+- LinkedIn: [andreadipaola](https://www.linkedin.com/in/andreadipaola/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+🐼🏨 Happy coding! 🚀
