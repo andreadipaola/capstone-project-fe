@@ -84,7 +84,7 @@ const useReservationsStore = (searchState) => {
   const handleReservationsGet = useCallback(async () => {
     try {
       const response = await reservationsApi.getReservations(searchState);
-      // console.log("Reservations:", response.data);
+      console.log("Reservations:", response.data);
       // console.log("Count:", response.count);
       if (isMounted()) {
         setState({

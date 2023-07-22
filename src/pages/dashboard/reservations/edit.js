@@ -135,11 +135,14 @@ const Page = () => {
                       width: 64
                     }}
                   >
-                    {getInitials(reservation.guest.firstName) + getInitials(reservation.guest.lastName)}
+                    {reservation.guest?.firstName && reservation.guest?.lastName
+                      ? getInitials(reservation.guest.firstName) + getInitials(reservation.guest.lastName)
+                      : null
+                    }
                   </Avatar>
                   <Stack spacing={1}>
                     <Typography variant="h4">
-                      {reservation.guest.email}
+                      {reservation.guest?.email || "N/A"}
                     </Typography>
                     <Stack
                       alignItems="center"

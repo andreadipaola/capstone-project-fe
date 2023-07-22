@@ -212,7 +212,7 @@ export const ReservationListTable = (props) => {
                     </IconButton>
                     <IconButton
                       component={RouterLink}
-                      to={`/dashboard/customers/${reservation.reservationId}/edit`}
+                      to={`/dashboard/reservations/${reservation.reservationId}/edit`}
                     >
                       <SvgIcon>
                         <DeleteIcon />

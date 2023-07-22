@@ -15,7 +15,7 @@ class ReservationsApi {
     const { filters, page, rowsPerPage, sortBy, sortDir } = request;
     try {
       const res = await axios.get('http://localhost:3001/reservations', { headers })
-      console.log(page);
+      // console.log(page);
       let data = res.data.content;
       let count = data.length;
 
@@ -63,9 +63,9 @@ class ReservationsApi {
 
       if (typeof page !== 'undefined' && typeof rowsPerPage !== 'undefined') {
         data = applyPagination(data, page, rowsPerPage);
-        console.log(data);
-        console.log(page);
-        console.log(rowsPerPage);
+        // console.log(data);
+        // console.log(page);
+        // console.log(rowsPerPage);
       }
 
       return {
@@ -86,6 +86,7 @@ class ReservationsApi {
     try {
       const res = await axios.get(`http://localhost:3001/reservations/${reservationId}`, { headers })
       let data = res.data;
+      // console.log("Reservation Api", res);
       return {
         data
       }

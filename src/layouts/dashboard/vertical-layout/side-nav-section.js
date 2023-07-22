@@ -6,11 +6,11 @@ import { SideNavItem } from './side-nav-item';
 
 const renderItems = ({ depth = 0, items, pathname }) => items.reduce((acc,
   item) => reduceChildRoutes({
-  acc,
-  depth,
-  item,
-  pathname
-}), []);
+    acc,
+    depth,
+    item,
+    pathname
+  }), []);
 
 const reduceChildRoutes = ({ acc, depth, item, pathname }) => {
   const checkPath = !!(item.path && pathname);
@@ -75,7 +75,8 @@ export const SideNavSection = (props) => {
       sx={{
         listStyle: 'none',
         m: 0,
-        p: 0
+        p: 0,
+        mt: 8
       }}
       {...other}>
       {subheader && (

@@ -102,22 +102,10 @@ export const CustomerEditForm = (props) => {
   }
   const roleOption = roles.find((role) => role.value === customer.role);
   const formik = useFormik({
-    // initialValues: {
-    //   email: customer.email,
-    //   firstName: customer.firstName,
-    //   lastName: customer.lastName,
-    //   role: customer.role,
-    //   password: customer.password,
-    //   // phone: customer.phone,
-    //   avatar: customer.avatar,
-    //   submit: null
-    // },
     initialValues: {
       email: customer.email || '',
       firstName: customer.firstName || '',
       lastName: customer.lastName || '',
-      // role: customer.role || '',
-      // role: roleOption || { text: '', value: '' },
       role: roleOption || null,
       password: customer.password || '',
       phone: customer.phone || '',
@@ -152,9 +140,9 @@ export const CustomerEditForm = (props) => {
           Authorization: `Bearer ${token}`
         };
         const res = await axios.put('http://localhost:3001/users/' + customer.userId, values, { headers });
-        // console.log(res.data);
-        // await customersApi.postCustomer(customer.userId);
         await wait(500);
+        // console.log("Put user", customer);
+        console.log("VALUES", values);
         helpers.setStatus({ success: true });
         helpers.setSubmitting(false);
         toast.success('User updated');

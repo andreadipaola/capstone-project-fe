@@ -222,18 +222,21 @@ export const SideNav = (props) => {
               />
             ))}
           </Stack>
-          {/* <Box sx={{ p: 3 }}>
-            <Typography variant="subtitle1">
-              Need help?
-            </Typography>
-            <Typography
-              color="neutral.400"
-              sx={{ mb: 2 }}
+          <Box sx={{ p: 3 }}>
+            {/* <Typography
               variant="body2"
+              color="neutral.400"
             >
-              Please check our docs.
-            </Typography>
-            <Button
+              &copy;2023 Andrea Di Paola
+            </Typography> */}
+            {/* <Typography
+              sx={{ mb: 1 }}
+              variant="body2"
+              align="center"
+            >
+              made with &#10084; in Italy
+            </Typography> */}
+            {/* <Button
               component="a"
               fullWidth
               href={paths.docs}
@@ -246,8 +249,8 @@ export const SideNav = (props) => {
               variant="contained"
             >
               Documentation
-            </Button>
-          </Box> */}
+            </Button> */}
+          </Box>
         </Stack>
       </Scrollbar>
     </Drawer>

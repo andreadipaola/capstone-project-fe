@@ -6,11 +6,11 @@ import { MobileNavItem } from './mobile-nav-item';
 
 const renderItems = ({ depth = 0, items, pathname }) => items.reduce((acc,
   item) => reduceChildRoutes({
-  acc,
-  depth,
-  item,
-  pathname
-}), []);
+    acc,
+    depth,
+    item,
+    pathname
+  }), []);
 
 const reduceChildRoutes = ({ acc, depth, item, pathname }) => {
   const checkPath = !!(item.path && pathname);
@@ -35,7 +35,7 @@ const reduceChildRoutes = ({ acc, depth, item, pathname }) => {
           sx={{
             listStyle: 'none',
             m: 0,
-            p: 0
+            p: 0,
           }}
         >
           {renderItems({
@@ -75,7 +75,8 @@ export const MobileNavSection = (props) => {
       sx={{
         listStyle: 'none',
         m: 0,
-        p: 0
+        p: 0,
+        mt: 8
       }}
       {...other}>
       {subheader && (
