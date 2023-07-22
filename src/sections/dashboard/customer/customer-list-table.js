@@ -1,4 +1,5 @@
 import numeral from 'numeral';
+import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight';
 import DeleteIcon from '@untitled-ui/icons-react/build/esm/Trash01';
@@ -208,7 +209,7 @@ export const CustomerListTable = (props) => {
                     {customer.phone}
                   </TableCell>
                   <TableCell>
-                    {customer.dateAdded}
+                    {dayjs(customer.dateAdded).format('DD/MM/YYYY')}
                   </TableCell>
                   <TableCell>
                     <SeverityPill color={statusColor}>

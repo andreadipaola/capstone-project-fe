@@ -1,4 +1,5 @@
 import numeral from 'numeral';
+import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight';
 import Edit02Icon from '@untitled-ui/icons-react/build/esm/Edit02';
@@ -210,7 +211,7 @@ export const RoomListTable = (props) => {
                     </SeverityPill>
                   </TableCell>
                   <TableCell>
-                    {room.dateAdded}
+                    {dayjs(room.dateAdded).format('DD/MM/YYYY')}
                   </TableCell>
                   {/* <TableCell>
                     {location}

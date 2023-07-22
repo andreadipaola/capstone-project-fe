@@ -1,4 +1,5 @@
 import numeral from 'numeral';
+import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight';
 import DeleteIcon from '@untitled-ui/icons-react/build/esm/Trash01';
@@ -191,10 +192,10 @@ export const ReservationListTable = (props) => {
                     </Stack>
                   </TableCell>
                   <TableCell>
-                    {reservation.arrivalDate}
+                    {dayjs(reservation.arrivalDate).format('DD/MM/YYYY')}
                   </TableCell>
                   <TableCell>
-                    {reservation.departureDate}
+                    {dayjs(reservation.departureDate).format('DD/MM/YYYY')}
                   </TableCell>
                   <TableCell>
                     <SeverityPill color={statusColor}>

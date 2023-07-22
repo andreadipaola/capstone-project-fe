@@ -1,4 +1,7 @@
 import PropTypes from 'prop-types';
+// import * as React from 'react';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
 import { useCallback, useState, useEffect } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import toast from 'react-hot-toast';
@@ -14,6 +17,8 @@ import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 
 import { reservationsApi } from "src/api/reservations";
 import { RouterLink } from 'src/components/router-link';
@@ -31,6 +36,8 @@ const statuses = [
 ];
 export const ReservationEditForm = (props) => {
   const { reservation, ...other } = props;
+  const [startDate, setStartDate] = useState(dayjs(reservation.arrivalDate).toDate());
+  const [endDate, setEndDate] = useState(dayjs(reservation.departureDate).toDate());
 
   const handleDelete = async (helpers) => {
     try {
@@ -55,13 +62,13 @@ export const ReservationEditForm = (props) => {
   const statusOption = statuses.find((bookingStatus) => bookingStatus.value === reservation.bookingStatus);
   const formik = useFormik({
     initialValues: {
-      // email: reservation.email || '',
-      // firstName: reservation.guest.firstName || '',
-      // lastName: reservation.lastName || '',
+      email: reservation.guest.email || '',
+      firstName: reservation.guest.firstName || '',
+      lastName: reservation.guest.lastName || '',
       bookingStatus: statusOption || null,
-      // password: reservation.password || '',
-      // phone: reservation.phone || '',
-      // avatar: reservation.avatar || '',
+      citizenship: reservation.guest.citizenship || '',
+      phone: reservation.guest.phone || '',
+      note: reservation.guest.note || '',
       submit: null
     },
     validationSchema: Yup.object({
@@ -91,10 +98,21 @@ export const ReservationEditForm = (props) => {
         const headers = {
           Authorization: `Bearer ${token}`
         };
-        const res = await axios.put('http://localhost:3001/reservations/' + reservation.reservationId, values, { headers });
+        const valuesToSubmit = {
+          bookingStatus: values.bookingStatus,
+          email: values.email,
+          firstName: values.firstName,
+          lastName: values.lastName,
+          citizenship: values.citizenship,
+          phone: values.phone,
+          note: values.note,
+          arrivalDate: startDate,
+          departureDate: endDate,
+        };
+        const res = await axios.put('http://localhost:3001/reservations/' + reservation.reservationId, valuesToSubmit, { headers });
         await wait(500);
         // console.log("Put reservation", reservation);
-        console.log("VALUES", values);
+        console.log("VALUES", valuesToSubmit);
         helpers.setStatus({ success: true });
         helpers.setSubmitting(false);
         toast.success('Reservation updated');
@@ -129,88 +147,26 @@ export const ReservationEditForm = (props) => {
           >
             <Grid
               xs={12}
-              md={6}
+              md={3}
+            // sx={{ mr: 4 }}
             >
-              {/* <TextField
-                error={!!(formik.touched.firstName && formik.errors.firstName)}
-                fullWidth
-                helperText={formik.touched.firstName && formik.errors.firstName}
-                label="First Name"
-                name="firstName"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                // required
-                value={formik.values.firstName}
-              /> */}
+              <DatePicker
+                label="Arrival Date"
+                value={startDate}
+                onChange={(newValue) => setStartDate(newValue)} />
             </Grid>
             <Grid
               xs={12}
-              md={6}
+              md={3}
             >
-              {/* <TextField
-                error={!!(formik.touched.lastName && formik.errors.lastName)}
-                fullWidth
-                helperText={formik.touched.lastName && formik.errors.lastName}
-                label="Last Name"
-                name="lastName"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                // required
-                value={formik.values.lastName}
-              /> */}
-            </Grid>
-            <Grid
-              xs={12}
-              md={6}
-            >
-              {/* <TextField
-                error={!!(formik.touched.email && formik.errors.email)}
-                fullWidth
-                helperText={formik.touched.email && formik.errors.email}
-                label="Email address"
-                name="email"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                // required
-                value={formik.values.email}
-              /> */}
-            </Grid>
-            <Grid
-              xs={12}
-              md={6}
-            >
-              {/* <TextField
-                error={!!(formik.touched.phone && formik.errors.phone)}
-                fullWidth
-                helperText={formik.touched.phone && formik.errors.phone}
-                label="Phone"
-                name="phone"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                // required
-                value={formik.values.phone}
-              /> */}
-            </Grid>
 
 
-            <Grid
-              xs={12}
-              md={6}
-            >
-              {/* <TextField
-                error={!!(formik.touched.password && formik.errors.password)}
-                fullWidth
-                helperText={formik.touched.password && formik.errors.password}
-                label="Password"
-                name="password"
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                // required
-                type="password"
-                value={formik.values.password}
-              /> */}
+              <DatePicker
+                label="Departure Date"
+                value={endDate}
+                onChange={(newValue) => setEndDate(newValue)}
+              />
             </Grid>
-
             <Grid
               xs={12}
               md={6}
@@ -240,16 +196,100 @@ export const ReservationEditForm = (props) => {
               xs={12}
               md={6}
             >
-              {/* <TextField
-                error={!!(formik.touched.avatar && formik.errors.avatar)}
+              <TextField
+                error={!!(formik.touched.firstName && formik.errors.firstName)}
                 fullWidth
-                helperText={formik.touched.avatar && formik.errors.avatar}
-                label="Avatar"
-                name="avatar"
+                helperText={formik.touched.firstName && formik.errors.firstName}
+                label="First Name"
+                name="firstName"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                value={formik.values.avatar}
-              /> */}
+                // required
+                value={formik.values.firstName}
+              />
+            </Grid>
+            <Grid
+              xs={12}
+              md={6}
+            >
+              <TextField
+                error={!!(formik.touched.lastName && formik.errors.lastName)}
+                fullWidth
+                helperText={formik.touched.lastName && formik.errors.lastName}
+                label="Last Name"
+                name="lastName"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                // required
+                value={formik.values.lastName}
+              />
+            </Grid>
+            <Grid
+              xs={12}
+              md={6}
+            >
+              <TextField
+                error={!!(formik.touched.citizenship && formik.errors.citizenship)}
+                fullWidth
+                helperText={formik.touched.citizenship && formik.errors.citizenship}
+                label="Citizenship"
+                name="citizenship"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                required
+                value={formik.values.citizenship}
+              />
+            </Grid>
+            <Grid
+              xs={12}
+              md={6}
+            >
+              <TextField
+                error={!!(formik.touched.email && formik.errors.email)}
+                fullWidth
+                helperText={formik.touched.email && formik.errors.email}
+                label="Email address"
+                name="email"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                required
+                value={formik.values.email}
+              />
+            </Grid>
+
+
+            <Grid
+              xs={12}
+              md={6}
+            >
+              <TextField
+                error={!!(formik.touched.phone && formik.errors.phone)}
+                fullWidth
+                helperText={formik.touched.phone && formik.errors.phone}
+                label="Phone"
+                name="phone"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                required
+                value={formik.values.phone}
+              />
+            </Grid>
+
+
+            <Grid
+              xs={12}
+              md={6}
+            >
+              <TextField
+                error={!!(formik.touched.note && formik.errors.note)}
+                fullWidth
+                helperText={formik.touched.note && formik.errors.note}
+                label="note"
+                name="note"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.note}
+              />
             </Grid>
           </Grid>
           <Stack
