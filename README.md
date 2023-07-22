@@ -1,6 +1,6 @@
 # PandaRooms 🐼🏨
 
-![Banner di PandaRooms](public/assets/project-banners/all-immagine-banner.png)
+![Banner di PandaRooms](public/assets/project-banners/reservations.png)
 
 PandaRooms è una web application per la gestione di una struttura alberghiera. Offre agli albergatori una piattaforma integrata per gestire al meglio le prenotazioni, le stanze e i propri ospiti attraverso l'automazione dei processi.
 
@@ -23,6 +23,7 @@ PandaRooms è una web application per la gestione di una struttura alberghiera. 
 ## Installazione e Utilizzo 🛠️
 
 ### Front-End
+https://github.com/andreadipaola/capstone-project-fe
 
 1. Clona il repository del front-end di PandaRooms: ```git clone https://github.com/andreadipaola/capstone-project-fe.git```
 2. Entra nella directory del front-end: ```cd capstone-project-fe```
@@ -30,6 +31,7 @@ PandaRooms è una web application per la gestione di una struttura alberghiera. 
 4. Avvia l'applicazione: ```npm start```
 
 ### Back-End e DB
+https://github.com/andreadipaola/capstone-project-be
 
 1. Clona il repository del back-end di PandaRooms: ```git clone https://github.com/andreadipaola/capstone-project-be.git```
 2. Entra nella directory del back-end: ```cd capstone-project-be```
