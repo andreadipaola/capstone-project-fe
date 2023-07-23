@@ -48,15 +48,15 @@ export const ReservationEditForm = (props) => {
       const res = await axios.delete('http://localhost:3001/reservations/' + reservation.reservationId, { headers });
       console.log(res);
       await wait(500);
-      helpers.setStatus({ success: true });
-      helpers.setSubmitting(false);
+      // helpers.setStatus({ success: true });
+      // helpers.setSubmitting(false);
       toast.success('Reservation deleted');
     } catch (err) {
       console.error(err);
       toast.error('Something went wrong!');
-      helpers.setStatus({ success: false });
+      // helpers.setStatus({ success: false });
       helpers.setErrors({ submit: err.message });
-      helpers.setSubmitting(false);
+      // helpers.setSubmitting(false);
     }
   }
   const statusOption = statuses.find((bookingStatus) => bookingStatus.value === reservation.bookingStatus);
@@ -100,14 +100,16 @@ export const ReservationEditForm = (props) => {
         };
         const valuesToSubmit = {
           bookingStatus: values.bookingStatus,
-          email: values.email,
-          firstName: values.firstName,
-          lastName: values.lastName,
-          citizenship: values.citizenship,
-          phone: values.phone,
-          note: values.note,
           arrivalDate: startDate,
           departureDate: endDate,
+          guest: {
+            email: values.email,
+            firstName: values.firstName,
+            lastName: values.lastName,
+            citizenship: values.citizenship,
+            phone: values.phone,
+            note: values.note,
+          }
         };
         const res = await axios.put('http://localhost:3001/reservations/' + reservation.reservationId, valuesToSubmit, { headers });
         await wait(500);
@@ -288,6 +290,7 @@ export const ReservationEditForm = (props) => {
                 name="note"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
+
                 value={formik.values.note}
               />
             </Grid>
