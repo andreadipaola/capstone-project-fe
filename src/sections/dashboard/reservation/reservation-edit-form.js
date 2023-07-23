@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-// import * as React from 'react';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import 'dayjs/locale/it';
 import dayjs from 'dayjs';
 import { useCallback, useState, useEffect } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -26,6 +27,8 @@ import { paths } from 'src/paths';
 import { wait } from 'src/utils/wait';
 import axios from 'axios';
 
+dayjs.locale('it');
+
 const statuses = [
   { text: 'Requested', value: 'REQUESTED' },
   { text: 'Pending', value: 'PENDING' },
@@ -34,10 +37,12 @@ const statuses = [
   { text: 'Checked Out', value: 'CHECKED_OUT' },
   { text: 'Cancelled', value: 'CANCELLED' }
 ];
+
+
 export const ReservationEditForm = (props) => {
   const { reservation, ...other } = props;
-  const [startDate, setStartDate] = useState(dayjs(reservation.arrivalDate).toDate());
-  const [endDate, setEndDate] = useState(dayjs(reservation.departureDate).toDate());
+  const [startDate, setStartDate] = useState(dayjs(reservation.arrivalDate).toDate().getTime() + Math.abs(dayjs(reservation.arrivalDate).toDate().getTimezoneOffset() * 60000));
+  const [endDate, setEndDate] = useState(dayjs(reservation.departureDate).toDate().getTime() + Math.abs(dayjs(reservation.departureDate).toDate().getTimezoneOffset() * 60000));
 
   const handleDelete = async (helpers) => {
     try {
@@ -150,10 +155,11 @@ export const ReservationEditForm = (props) => {
             <Grid
               xs={12}
               md={3}
-            // sx={{ mr: 4 }}
             >
               <DatePicker
                 label="Arrival Date"
+                format="dd/MM/yyyy"
+                slotProps={{ textField: { fullWidth: true } }}
                 value={startDate}
                 onChange={(newValue) => setStartDate(newValue)} />
             </Grid>
@@ -165,6 +171,8 @@ export const ReservationEditForm = (props) => {
 
               <DatePicker
                 label="Departure Date"
+                format="dd/MM/yyyy"
+                slotProps={{ textField: { fullWidth: true } }}
                 value={endDate}
                 onChange={(newValue) => setEndDate(newValue)}
               />
@@ -193,6 +201,16 @@ export const ReservationEditForm = (props) => {
                   />
                 )}
               />
+            </Grid>
+            <Grid
+              xs={12}
+              md={12}
+            >
+              {/* <Divider sx={{ mb: 3 }} /> */}
+              <Typography variant="h6"
+                sx={{ mb: -1, mt: 2 }}>
+                Edit Guest
+              </Typography>
             </Grid>
             <Grid
               xs={12}
