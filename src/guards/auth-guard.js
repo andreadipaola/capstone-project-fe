@@ -6,9 +6,6 @@ import { paths } from 'src/paths';
 import { Issuer } from 'src/utils/auth';
 
 const loginPaths = {
-  [Issuer.Amplify]: paths.auth.amplify.login,
-  [Issuer.Auth0]: paths.auth.auth0.login,
-  [Issuer.Firebase]: paths.auth.firebase.login,
   [Issuer.JWT]: paths.auth.jwt.login
 };
 
@@ -30,8 +27,8 @@ export const AuthGuard = (props) => {
 
   // Only check on mount, this allows us to redirect the user manually when auth state changes
   useEffect(() => {
-      check();
-    },
+    check();
+  },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []);
 

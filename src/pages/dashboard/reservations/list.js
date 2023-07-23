@@ -10,6 +10,7 @@ import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import SvgIcon from "@mui/material/SvgIcon";
 import Typography from "@mui/material/Typography";
+import Link from '@mui/material/Link';
 
 import { reservationsApi } from "src/api/reservations";
 import { Seo } from "src/components/seo";
@@ -18,6 +19,8 @@ import { usePageView } from "src/hooks/use-page-view";
 import { useSelection } from "src/hooks/use-selection";
 import { ReservationListSearch } from "src/sections/dashboard/reservation/reservation-list-search";
 import { ReservationListTable } from "src/sections/dashboard/reservation/reservation-list-table";
+import { RouterLink } from 'src/components/router-link';
+import { paths } from 'src/paths';
 
 const useReservationsSearch = () => {
   const [state, setState] = useState({
@@ -171,16 +174,20 @@ const Page = () => {
                 </Stack>
               </Stack>
               <Stack alignItems="center" direction="row" spacing={3}>
-                <Button
-                  startIcon={
-                    <SvgIcon>
-                      <PlusIcon />
-                    </SvgIcon>
-                  }
-                  variant="contained"
-                >
-                  Add
-                </Button>
+                <Link
+                  component={RouterLink}
+                  href={paths.dashboard.reservations.create}>
+                  <Button
+                    startIcon={
+                      <SvgIcon>
+                        <PlusIcon />
+                      </SvgIcon>
+                    }
+                    variant="contained"
+                  >
+                    Add
+                  </Button>
+                </Link>
               </Stack>
             </Stack>
             <Card>

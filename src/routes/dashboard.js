@@ -14,6 +14,7 @@ const GuestEditPage = lazy(() => import('src/pages/dashboard/guests/edit'));
 
 // Reservation
 const ReservationListPage = lazy(() => import('src/pages/dashboard/reservations/list'));
+const ReservationCreatePage = lazy(() => import('src/pages/dashboard/reservations/create'));
 const ReservationEditPage = lazy(() => import('src/pages/dashboard/reservations/edit'));
 
 // Room
@@ -23,10 +24,6 @@ const RoomEditPage = lazy(() => import('src/pages/dashboard/rooms/edit'));
 // Room Type
 const RoomTypesListPage = lazy(() => import('src/pages/dashboard/roomTypes/list'));
 const RoomTypesEditPage = lazy(() => import('src/pages/dashboard/roomTypes/edit'));
-
-
-
-
 
 export const dashboardRoutes = [
   {
@@ -75,6 +72,10 @@ export const dashboardRoutes = [
           {
             index: true,
             element: <ReservationListPage />
+          },
+          {
+            path: 'create',
+            element: <ReservationCreatePage />
           },
           {
             path: ':reservationId/edit',
