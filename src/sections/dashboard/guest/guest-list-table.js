@@ -1,6 +1,7 @@
 import numeral from 'numeral';
 import PropTypes from 'prop-types';
 import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight';
+import DeleteIcon from '@untitled-ui/icons-react/build/esm/Trash01';
 import Edit02Icon from '@untitled-ui/icons-react/build/esm/Edit02';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -22,6 +23,7 @@ import { RouterLink } from 'src/components/router-link';
 import { Scrollbar } from 'src/components/scrollbar';
 import { paths } from 'src/paths';
 import { getInitials } from 'src/utils/get-initials';
+
 
 export const GuestListTable = (props) => {
   const {
@@ -229,7 +231,7 @@ export const GuestListTable = (props) => {
                       href={paths.dashboard.guests.details}
                     >
                       <SvgIcon>
-                        <ArrowRightIcon />
+                        <DeleteIcon />
                       </SvgIcon>
                     </IconButton>
                   </TableCell>

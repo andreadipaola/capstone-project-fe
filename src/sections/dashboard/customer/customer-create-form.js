@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
@@ -28,6 +28,18 @@ const roles = [
 ];
 
 export const CustomerCreateForm = () => {
+
+  const [state, setState] = useState({
+    filters: {
+      query: undefined,
+      isManager: undefined,
+      isReceptionist: undefined
+    },
+    page: 0,
+    rowsPerPage: 5,
+    sortBy: "lastName",
+    sortDir: "desc"
+  });
 
   const formik = useFormik({
     initialValues: {

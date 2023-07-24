@@ -41,8 +41,10 @@ const statuses = [
 
 export const ReservationEditForm = (props) => {
   const { reservation, ...other } = props;
-  const [startDate, setStartDate] = useState(dayjs(reservation.arrivalDate).toDate().getTime() + Math.abs(dayjs(reservation.arrivalDate).toDate().getTimezoneOffset() * 60000));
-  const [endDate, setEndDate] = useState(dayjs(reservation.departureDate).toDate().getTime() + Math.abs(dayjs(reservation.departureDate).toDate().getTimezoneOffset() * 60000));
+  // const [startDate, setStartDate] = useState(dayjs(reservation.arrivalDate).toDate().getTime() + Math.abs(dayjs(reservation.arrivalDate).toDate().getTimezoneOffset() * 60000));
+  // const [endDate, setEndDate] = useState(dayjs(reservation.departureDate).toDate().getTime() + Math.abs(dayjs(reservation.departureDate).toDate().getTimezoneOffset() * 60000));
+  const [startDate, setStartDate] = useState(dayjs(reservation.arrivalDate).toDate());
+  const [endDate, setEndDate] = useState(dayjs(reservation.departureDate).toDate());
 
   const handleDelete = async (helpers) => {
     try {

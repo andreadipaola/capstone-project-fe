@@ -8,6 +8,11 @@ import Autocomplete from '@mui/material/Autocomplete';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import Box from '@mui/material/Box';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import SearchMdIcon from '@untitled-ui/icons-react/build/esm/SearchMd';
+import SvgIcon from '@mui/material/SvgIcon';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -79,33 +84,103 @@ export const ReservationCreateForm = () => {
     }),
 
 
+    // onSubmit: async (values, helpers) => {
+    //   const token = sessionStorage.getItem('accessToken');
+    //   const headers = {
+    //     Authorization: `Bearer ${token}`
+    //   };
+    //   try {
+
+    //     const guestValuesToSubmit = {
+    //       email: values.email,
+    //       firstName: values.firstName,
+    //       lastName: values.lastName,
+    //       citizenship: values.citizenship,
+    //       phone: values.phone,
+    //       note: values.note,
+    //     };
+    //     const guestResp = await axios.post('http://localhost:3001/guests', guestValuesToSubmit, { headers });
+    //     console.log(guestResp);
+    //     await wait(500);
+    //     // console.log("Put reservation", reservation);
+    //     helpers.setStatus({ success: true });
+    //     helpers.setSubmitting(false);
+    //     toast.success('Guest created');
+    //   } catch (err) {
+    //     console.error(err);
+    //     toast.error('Something went wrong!');
+    //     helpers.setStatus({ success: false });
+    //     helpers.setErrors({ submit: err.message });
+    //     helpers.setSubmitting(false);
+    //   }
+
+    //   try {
+    //     const reservationValuesToSubmit = {
+    //       bookingStatus: values.bookingStatus,
+    //       arrivalDate: startDate,
+    //       departureDate: endDate,
+    //       guest: {
+    //         guestId: "808ab052-686b-4275-81d8-d2712e825c77",
+    //         email: values.email,
+    //         firstName: values.firstName,
+    //         lastName: values.lastName,
+    //         citizenship: values.citizenship,
+    //         phone: values.phone,
+    //         note: values.note,
+    //       }
+    //     };
+    //     // console.log("VALUES", valuesToSubmit);
+    //     const res = await axios.post('http://localhost:3001/reservations', reservationValuesToSubmit, { headers });
+    //     // console.log(res);
+    //     await wait(500);
+    //     // console.log("Put reservation", reservation);
+    //     helpers.setStatus({ success: true });
+    //     helpers.setSubmitting(false);
+    //     toast.success('Reservation created');
+    //   } catch (err) {
+    //     console.error(err);
+    //     toast.error('Something went wrong!');
+    //     helpers.setStatus({ success: false });
+    //     helpers.setErrors({ submit: err.message });
+    //     helpers.setSubmitting(false);
+    //   }
+    // },
     onSubmit: async (values, helpers) => {
+      const token = sessionStorage.getItem('accessToken');
+      const headers = {
+        Authorization: `Bearer ${token}`
+      };
+
       try {
-        const token = sessionStorage.getItem('accessToken');
-        const headers = {
-          Authorization: `Bearer ${token}`
+        // Creazione del guest
+        const guestValuesToSubmit = {
+          email: values.email,
+          firstName: values.firstName,
+          lastName: values.lastName,
+          citizenship: values.citizenship,
+          phone: values.phone,
+          note: values.note,
         };
-        const valuesToSubmit = {
+
+        const guestResp = await axios.post('http://localhost:3001/guests', guestValuesToSubmit, { headers });
+
+        // Ottieni l'oggetto guest appena creato
+        const guestData = guestResp.data;
+
+        // Creazione della prenotazione con tutti i dati del guest appena creato
+        const reservationValuesToSubmit = {
           bookingStatus: values.bookingStatus,
           arrivalDate: startDate,
           departureDate: endDate,
-          guest: {
-            guestId: "808ab052-686b-4275-81d8-d2712e825c77",
-            email: values.email,
-            firstName: values.firstName,
-            lastName: values.lastName,
-            citizenship: values.citizenship,
-            phone: values.phone,
-            note: values.note,
-          }
+          guest: guestData, // Utilizza l'intero oggetto guestData
         };
-        console.log("VALUES", valuesToSubmit);
-        const res = await axios.post('http://localhost:3001/reservations', valuesToSubmit, { headers });
-        console.log(res);
+
+        const res = await axios.post('http://localhost:3001/reservations', reservationValuesToSubmit, { headers });
+
         await wait(500);
-        // console.log("Put reservation", reservation);
         helpers.setStatus({ success: true });
         helpers.setSubmitting(false);
+        toast.success('Guest created');
         toast.success('Reservation created');
       } catch (err) {
         console.error(err);
@@ -115,6 +190,7 @@ export const ReservationCreateForm = () => {
         helpers.setSubmitting(false);
       }
     },
+
   });
 
   const handleDateChange = useCallback((field, newValue) => {
@@ -196,7 +272,66 @@ export const ReservationCreateForm = () => {
               {/* <Divider sx={{ mb: 3 }} /> */}
               <Typography variant="h6"
                 sx={{ mb: -1, mt: 2 }}>
-                Edit Guest
+                Search Existing Guest
+              </Typography>
+            </Grid>
+            {/* <Stack
+              alignItems="center"
+              direction="row"
+              flexWrap="wrap"
+              spacing={3}
+              sx={{ p: 3 }}
+            > */}
+            {/* <Box
+              component="form"
+              // onSubmit={handleQueryChange}
+              sx={{ flexGrow: 1 }}
+            > */}
+            <Grid
+              xs={12}
+              md={12}
+            >
+              <OutlinedInput
+                defaultValue=""
+                fullWidth
+                // inputProps={{ ref: queryRef }}
+                placeholder="Search guests"
+                startAdornment={(
+                  <InputAdornment position="start">
+                    <SvgIcon>
+                      <SearchMdIcon />
+                    </SvgIcon>
+                  </InputAdornment>
+                )}
+              />
+            </Grid>
+            {/* </Box> */}
+            {/* <TextField
+          label="Sort By"
+          name="sort"
+          onChange={handleSortChange}
+          select
+          SelectProps={{ native: true }}
+          value={`${sortBy}|${sortDir}`}
+        >
+          {sortOptions.map((option) => (
+            <option
+              key={option.value}
+              value={option.value}
+            >
+              {option.label}
+            </option>
+          ))}
+        </TextField> */}
+            {/* </Stack> */}
+            <Grid
+              xs={12}
+              md={12}
+            >
+              {/* <Divider sx={{ mb: 3 }} /> */}
+              <Typography variant="h6"
+                sx={{ mb: -1, mt: 2 }}>
+                Add New Guest
               </Typography>
             </Grid>
             <Grid

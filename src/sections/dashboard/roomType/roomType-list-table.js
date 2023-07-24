@@ -1,6 +1,7 @@
 import numeral from 'numeral';
 import PropTypes from 'prop-types';
 import ArrowRightIcon from '@untitled-ui/icons-react/build/esm/ArrowRight';
+import DeleteIcon from '@untitled-ui/icons-react/build/esm/Trash01';
 import Edit02Icon from '@untitled-ui/icons-react/build/esm/Edit02';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -232,7 +233,7 @@ export const RoomTypeListTable = (props) => {
                       href={paths.dashboard.roomTypes.details}
                     >
                       <SvgIcon>
-                        <ArrowRightIcon />
+                        <DeleteIcon />
                       </SvgIcon>
                     </IconButton>
                   </TableCell>
