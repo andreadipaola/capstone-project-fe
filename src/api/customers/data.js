@@ -188,7 +188,7 @@ export const customer = {
   id: '5e86805e2bafd54f66cc95c3',
   address1: 'Street John Wick, no. 7',
   address2: 'House #25',
-  avatar: '/assets/avatars/andrea.png',
+  avatar: '/assets/avatars/andrea2.png',
   balance: 0,
   city: 'San Diego',
   country: 'USA',

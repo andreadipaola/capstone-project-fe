@@ -184,25 +184,25 @@ export const SideNav = (props) => {
           <Stack
             alignItems="center"
             direction="row"
-            spacing={2}
+            spacing={0.5}
             sx={{ p: 3 }}
           >
-            {/* <Box
-              component={RouterLink}
-              href={paths.index}
+            <Box
+              // component={RouterLink}
+              // href={paths.index}
               sx={{
-                borderColor: 'var(--nav-logo-border)',
-                borderRadius: 1,
-                borderStyle: 'solid',
-                borderWidth: 1,
+                // borderColor: 'var(--nav-logo-border)',
+                // borderRadius: 1,
+                // borderStyle: 'solid',
+                // borderWidth: 1,
                 display: 'flex',
                 height: 40,
-                p: '4px',
-                width: 40
+                p: '2px',
+                width: 62
               }}
             >
               <Logo />
-            </Box> */}
+            </Box>
             <TenantSwitch sx={{ flexGrow: 1 }} />
           </Stack>
           <Stack

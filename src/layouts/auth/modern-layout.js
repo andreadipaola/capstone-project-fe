@@ -118,10 +118,10 @@ export const Layout = (props) => {
               direction="row"
               display="inline-flex"
               href={paths.index}
-              spacing={1}
+              spacing={3}
               sx={{ textDecoration: 'none' }}
             >
-              {/* <Box
+              <Box
                 sx={{
                   display: 'inline-flex',
                   height: 24,
@@ -129,7 +129,7 @@ export const Layout = (props) => {
                 }}
               >
                 <Logo />
-              </Box> */}
+              </Box>
               <Box
                 sx={{
                   color: 'text.primary',

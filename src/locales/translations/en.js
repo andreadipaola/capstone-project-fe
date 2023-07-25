@@ -49,7 +49,9 @@ export const en = {
   [tokens.nav.socialMedia]: 'Social Media',
   [tokens.nav.verifyCode]: 'Verify Code',
   //CUSTOM
-  [tokens.nav.data]: 'Data',
+  [tokens.nav.reservationsAndGuests]: 'Reservations and Guests',
+  [tokens.nav.staff]: 'Staff',
+  [tokens.nav.hotelFacility]: 'Hotel Facility',
   [tokens.nav.guests]: 'Guests',
   [tokens.nav.hotel]: 'Hotel',
   [tokens.nav.invoices]: 'Invoices',

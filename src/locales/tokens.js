@@ -52,7 +52,9 @@ export const tokens = {
     verifyCode: 'nav.verifyCode',
 
     //CUSTOM
-    data: 'nav.data',
+    reservationsAndGuests: 'nav.reservationsAndGuests',
+    staff: 'nav.staff',
+    hotelFacility: 'nav.hotelFacility',
     guests: 'nav.guests',
     hotel: 'nav.hotel',
     invoices: 'nav.nvoices',

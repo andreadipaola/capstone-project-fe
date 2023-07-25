@@ -220,7 +220,7 @@ export const GuestListTable = (props) => {
                   <TableCell align="right">
                     <IconButton
                       component={RouterLink}
-                      href={paths.dashboard.guests.edit}
+                    // href={paths.dashboard.guests.edit}
                     >
                       <SvgIcon>
                         <Edit02Icon />
@@ -228,7 +228,7 @@ export const GuestListTable = (props) => {
                     </IconButton>
                     <IconButton
                       component={RouterLink}
-                      href={paths.dashboard.guests.details}
+                    // href={paths.dashboard.guests.details}
                     >
                       <SvgIcon>
                         <DeleteIcon />
