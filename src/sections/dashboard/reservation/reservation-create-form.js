@@ -52,35 +52,34 @@ export const ReservationCreateForm = () => {
   const [endDate, setEndDate] = useState(null);
   const formik = useFormik({
     initialValues: {
-      email: '',
+      email: 'bruno.barbieri@gmail.com',
       firstName: '',
       lastName: '',
       bookingStatus: '',
-      citizenship: '',
-      phone: '',
+      citizenship: 'Italiana',
+      phone: '333777777',
       note: '',
       submit: null
     },
     validationSchema: Yup.object({
-      // email: Yup
-      //   .string()
-      //   .email('Must be a valid email')
-      //   .max(255)
-      //   .required('Email is required'),
-      // firstName: Yup
-      //   .string()
-      //   .max(255)
-      //   .required('First Name is required'),
-      // lastName: Yup
-      //   .string()
-      //   .max(255)
-      //   .required('Last Name is required'),
-      // password: Yup
-      //   .string()
-      //   .max(255)
-      //   .required('Password is required'),
-      // phone: Yup.string().max(15),
-      // avatar: Yup.string().max(255)
+      email: Yup
+        .string()
+        .email('Must be a valid email')
+        .max(255)
+        .required('Email is required'),
+      firstName: Yup
+        .string()
+        .max(255)
+        .required('First Name is required'),
+      lastName: Yup
+        .string()
+        .max(255)
+        .required('Last Name is required'),
+      citizenship: Yup
+        .string()
+        .max(255)
+        .required('Citizenship is required'),
+      phone: Yup.string().max(15),
     }),
 
 
@@ -237,7 +236,6 @@ export const ReservationCreateForm = () => {
                 slotProps={{ textField: { fullWidth: true } }}
                 value={formik.values.departureDate}
                 onChange={(newValue) => handleDateChange('departureDate', newValue)}
-
               />
             </Grid>
             <Grid
@@ -265,16 +263,16 @@ export const ReservationCreateForm = () => {
                 )}
               />
             </Grid>
-            <Grid
+            {/* <Grid
               xs={12}
               md={12}
             >
-              {/* <Divider sx={{ mb: 3 }} /> */}
+              <Divider sx={{ mb: 3 }} />
               <Typography variant="h6"
                 sx={{ mb: -1, mt: 2 }}>
                 Search Existing Guest
               </Typography>
-            </Grid>
+            </Grid> */}
             {/* <Stack
               alignItems="center"
               direction="row"
@@ -287,7 +285,7 @@ export const ReservationCreateForm = () => {
               // onSubmit={handleQueryChange}
               sx={{ flexGrow: 1 }}
             > */}
-            <Grid
+            {/* <Grid
               xs={12}
               md={12}
             >
@@ -304,7 +302,7 @@ export const ReservationCreateForm = () => {
                   </InputAdornment>
                 )}
               />
-            </Grid>
+            </Grid> */}
             {/* </Box> */}
             {/* <TextField
           label="Sort By"
@@ -378,7 +376,7 @@ export const ReservationCreateForm = () => {
                 name="citizenship"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                required
+                // required
                 value={formik.values.citizenship}
               />
             </Grid>
@@ -394,7 +392,7 @@ export const ReservationCreateForm = () => {
                 name="email"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                required
+                // required
                 value={formik.values.email}
               />
             </Grid>
@@ -412,7 +410,7 @@ export const ReservationCreateForm = () => {
                 name="phone"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                required
+                // required
                 value={formik.values.phone}
               />
             </Grid>
