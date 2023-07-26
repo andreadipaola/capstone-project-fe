@@ -1,8 +1,8 @@
 {
-  "name": "@devias-kit-pro/cra",
-  "version": "6.3.0",
-  "author": "Devias",
-  "homepage": "https://devias.io",
+  "name": "pandarooms",
+  "version": "1.0.0",
+  "author": "Andrea Di Paola",
+  "homepage": "https://andreadipaola.com",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
